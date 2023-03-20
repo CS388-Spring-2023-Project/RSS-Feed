@@ -1,1 +1,89 @@
-# RSS-Feed
+# Milestone 1 - RSS Feed
+
+## Table of Contents
+
+1. [Overview](#Overview)
+1. [Product Spec](#Product-Spec)
+1. [Wireframes](#Wireframes)
+
+## Overview
+
+### Description
+
+RSS feed is an app that allows users to subscribe to multiple websites via RSS in order to see updates to each in real time. Users can scroll through a feed of every website they are subscribed too; tapping an article opens it in the user's web browser. Users also have access to a settings menu that lets them subscribe to/unsubscribe from websites and manage their account.
+
+### App Evaluation
+
+   - **Description:** Users can subscribe to one or more websites, and be served a feed of articles posted to all subscribed websites. Each article has a brief description, and tapping the article opens it in the user's we browser.
+   - **Category:** Entertainment
+   - **Mobile:** Users can conveniently access content from anywhere. Additionally, any people use their phones as their primary way to access the internet. Finally, users can see articles being posted faster if they can access the feed through their phone.
+   - **Story:** Anyone who follows multiple sites will love having a centrilized feed.
+   - **Market:** Anyone who follows multiple new sites, or other site that uses RSS (such as podcasts).
+   - **Habit:** Users will get on consistantly to check the news and see what new articles/media have come out.
+   - **Scope:** Moderate. This app relies mainly on things that we have bee taught (RecyclerViews, displaying websites, etc). The main complication is accessing APIs; if RSS doesn't have an applicable API (i.e., one that allows for updates from arbitrary sites to be tracked), the scope may have to be limited to apps that we have implemented.
+
+## Product Spec
+
+### 1. User Features (Required and Optional)
+
+**Required Features**
+
+* User can create an account.
+* User can log in.
+* Users can subscribe to websites through RSS (fallback; through API).
+* Users can see their subscription feed.
+* Users can access articles through the feed by tapping on them.
+* Users can *un*subscribe from websites.
+* Users can manage their account (log out, delete account).
+
+**Stretch Features**
+
+* Additional settings; appearence, filters.
+* "Real time" updates (app checks for updates in real time and tells users when there is something new if they refresh; like the tumblr app).
+* Push notifications when websites are updated (can be adjusted on a per-website basis).
+* Filter feed by source, content type (article, podcast, etc), etc.
+
+### 2. Screen Archetypes
+
+- Login Screen
+  - Users can log in.
+- Registration Screen
+  - Users can make an account.
+- Main Feed
+    - Users can see all their subscriptions.
+    - Users can open articles.
+- Settings
+    - Subscriptions
+        - Users can add/remove subscriptions.
+    - Account Management
+        - Users can manage/delete their account.
+
+### 3. Navigation
+
+**Tab Navigation** (Tab to Screen)
+
+* Main Feed
+* Settings
+
+**Flow Navigation** (Screen to Screen)
+
+- Login Screen
+  - Main Feed
+- Registration Screen
+  - Main Feed
+- Main Feed
+    - Article (in web browser)
+- Settings
+    - Subscriptions
+    - Account Mangement
+        - Login Screen (on logging out/deleting account)
+
+
+## Wireframes
+
+[Add picture of your hand sketched wireframes in this section]
+<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+
+### [BONUS] Digital Wireframes & Mockups
+
+### [BONUS] Interactive Prototype
