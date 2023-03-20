@@ -80,9 +80,8 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 
 
 ## Wireframes
+<img src="https://user-images.githubusercontent.com/69495267/226485966-8dd98a82-4496-464f-a1c7-17e11961edee.jpg" width=600>
 
-[Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 
