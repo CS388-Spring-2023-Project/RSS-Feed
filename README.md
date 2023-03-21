@@ -35,6 +35,9 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 * Users can access articles through the feed by tapping on them.
 * Users can *un*subscribe from websites.
 * Users can manage their account (log out, delete account).
+* Users can share articles with other users.
+* Users can receive notifications when a new story is posted.
+* Users can see the most popular subscriptions by other app users.
 
 **Stretch Features**
 
