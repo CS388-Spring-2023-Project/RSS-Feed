@@ -84,5 +84,5 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 
 
 ### [BONUS] Digital Wireframes & Mockups
-
+<img src='https://github.com/CS388-Spring-2023-Project/RSS-Feed/blob/main/wireframe_1.jpg'>
 ### [BONUS] Interactive Prototype
