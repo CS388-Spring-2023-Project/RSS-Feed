@@ -5,7 +5,7 @@
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
-1. [RSS-Feed User Story User can log in](#User-Story-User-can-log-in)
+1. [RSS-Feed User Story User can log in](#RSS-Feed-User-Story-User-can-log-in)
 ## Overview
 
 ### Description
