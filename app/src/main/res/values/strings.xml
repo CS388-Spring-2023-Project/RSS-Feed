@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">MyRssFeedApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="you_don_t_have_an_account_with_us">You Don\'t have an account with us?</string>
+    <string name="create_account">Create account</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="login_title">login</string>
+    <string name="sign_in">Sign in</string>
+    <string name="have_account">You have an account already?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password_hint">Password</string>
+    <string name="email_hint">Email</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
+    <string name="create_account_title">Create Account</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+</resources>
