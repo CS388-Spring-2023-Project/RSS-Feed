@@ -28,8 +28,8 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 
 **Required Features**
 
-* [X] User can create an account.
 * [x] User can log in.
+* [ ] User can create an account.
 * [ ] Users can subscribe to websites through RSS (fallback; through API).
 * [ ] Users can see their subscription feed.
 * [ ] Users can access articles through the feed by tapping on them.
@@ -90,5 +90,5 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 <img src='https://github.com/CS388-Spring-2023-Project/RSS-Feed/blob/main/wireframe_1.jpg'>
 ### [BONUS] Interactive Prototype
 
-## RSS-Feed Login and Create Account / User Stories : User can create an account.  User can log in.
+## RSS-Feed Login / User StorY : User can log in.
 ![Untitled](https://user-images.githubusercontent.com/62580207/228110034-66188a0f-2429-4a2d-81d2-0bb6736f6d44.gif)
