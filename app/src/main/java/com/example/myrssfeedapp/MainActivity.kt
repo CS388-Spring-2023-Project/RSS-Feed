@@ -65,10 +65,12 @@ class MainActivity : AppCompatActivity() {
                         if (jsonResult != null) {
                             if(jsonResult.getInt("error") == 0){
                                 //Log.d("error","Account not found")
-                                //Toast.makeText(,"This Email is already exist",Toast.LENGTH_LONG).show()
+                               // Toast.makeText(this@MainActivity.applicationContext,"record is not found",Toast.LENGTH_LONG)
+                                 //   .show()
                             } else if(jsonResult.getInt("error") == 2){
                                 Log.d("error","email or password incorrect")
-                                //Toast.makeText(context,"Error saving this record",Toast.LENGTH_LONG).show()
+//                                Toast.makeText(this@MainActivity,"Email or password incorrect",Toast.LENGTH_LONG)
+//                                    .show()
                             }
                             else if(jsonResult.getInt("error") == 1){
                                 val intent = Intent(this@MainActivity,SessionActivity::class.java)
@@ -76,6 +78,7 @@ class MainActivity : AppCompatActivity() {
                                 Log.d("MyID signIN",jsonResult.getInt("userID").toString())
                                 //sharedViewModel.setMyID(jsonObject.getInt("userID"))
                                 startActivity(intent)
+                                finish()
                             }
                         }
                     }
