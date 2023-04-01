@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.MyRssFeedApp" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.MyRssFeedApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/myYellow</item>
         <item name="colorPrimaryVariant">@color/myYellow</item>
