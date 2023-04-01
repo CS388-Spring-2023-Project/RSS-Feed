@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="myYellow">#ffd700</color>
+    <color name="charcoal">#36454F</color>
+    <color name="lightGray">#F8f8f8</color>
+    <color name="lightBrown">#C46200</color>
+    <color name="pomegranate">#c93434</color>
 </resources>
