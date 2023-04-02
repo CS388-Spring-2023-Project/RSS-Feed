@@ -29,4 +29,6 @@
     <string name="profile_name">Profile name</string>
     <string name="sign_out">Sign out</string>
     <string name="delete_account">Delete Account</string>
+    <string name="my_favorites">My Favorites</string>
+    <string name="username">Username</string>
 </resources>

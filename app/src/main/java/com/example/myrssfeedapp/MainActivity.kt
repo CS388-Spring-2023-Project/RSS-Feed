@@ -74,17 +74,23 @@ class MainActivity : AppCompatActivity() {
                             }
                             else if(jsonResult.getInt("error") == 1){
                                 val intent = Intent(this@MainActivity,SessionActivity::class.java)
-                                intent.putExtra("myID",jsonResult.getInt("userID"))
-                                Log.d("MyID signIN",jsonResult.getInt("userID").toString())
-                                //sharedViewModel.setMyID(jsonObject.getInt("userID"))
+                                val userID = jsonResult.getInt("userID")
+                                val userFirstName = jsonResult.getString("firstName")
+                                val userLastName = jsonResult.getString("lastName")
+                                val availableServices = jsonResult.getJSONArray("availableServices")
+                                val userSubscriptions = jsonResult.getJSONArray("userSubscriptions")
+                                Log.d("availableServices",availableServices.toString())
+                                intent.putExtra("userID",userID)
+                                intent.putExtra("firstName",userFirstName)
+                                intent.putExtra("lastName",userLastName)
+                                intent.putExtra("availableServices",availableServices.toString())
+                                intent.putExtra("userSubscriptions",userSubscriptions.toString())
                                 startActivity(intent)
                                 finish()
                             }
                         }
                     }
                 })
-
-
             }
         }
     }
