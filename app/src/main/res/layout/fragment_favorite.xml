@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="155dp"
-        android:background="@drawable/wave5"
+        android:background="@drawable/wave6"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -25,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:padding="30dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoritesRV"

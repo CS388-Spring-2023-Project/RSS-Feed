@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="35sp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:text="@string/settings_title"
         android:textStyle="bold"
         android:layout_marginVertical="25dp"
@@ -131,12 +131,13 @@
         android:id="@+id/subscriptionRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="10dp"
+        android:layout_marginVertical="20dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_below="@id/subscriptionTitle"
         android:layout_above="@id/buttons"
         android:layout_marginHorizontal="20dp"
+
         />
 
     <LinearLayout
@@ -147,7 +148,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-
         >
         <Button
             android:id="@+id/signOutButton"
