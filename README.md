@@ -92,3 +92,5 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 
 ## RSS-Feed User Story User can log in
 ![Untitled](https://user-images.githubusercontent.com/62580207/228110034-66188a0f-2429-4a2d-81d2-0bb6736f6d44.gif)
+
+![part2](https://user-images.githubusercontent.com/62580207/229656554-cdb074e8-2072-4b08-a110-1d475fd101ca.gif)
