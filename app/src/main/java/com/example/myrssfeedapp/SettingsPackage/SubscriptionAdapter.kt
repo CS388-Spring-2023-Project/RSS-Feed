@@ -1,10 +1,11 @@
-package com.example.myrssfeedapp
+package com.example.myrssfeedapp.SettingsPackage
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myrssfeedapp.R
 
 class SubscriptionAdapter: RecyclerView.Adapter<SubscriptionAdapter.SubscriptionViewHolder>() {
     private var subscriptionsList = ArrayList<Subscription>()

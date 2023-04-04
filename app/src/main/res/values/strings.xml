@@ -31,4 +31,11 @@
     <string name="delete_account">Delete Account</string>
     <string name="my_favorites">My Favorites</string>
     <string name="username">Username</string>
+    <string name="our_services">Our Services</string>
+    <string name="update">Update</string>
+    <string name="update_name">Update Name</string>
+    <string name="lastname">lastname</string>
+    <string name="firstname">Firstname</string>
+    <string name="update_text">Update</string>
+    <string name="cancel">Cancel</string>
 </resources>

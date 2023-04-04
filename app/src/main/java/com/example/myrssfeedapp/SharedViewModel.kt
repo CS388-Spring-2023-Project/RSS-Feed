@@ -1,6 +1,8 @@
 package com.example.myrssfeedapp
 
 import androidx.lifecycle.ViewModel
+import com.example.myrssfeedapp.SettingsPackage.Service
+import com.example.myrssfeedapp.SettingsPackage.Subscription
 
 class SharedViewModel : ViewModel() {
     private var userID:Int = 0
@@ -22,7 +24,7 @@ class SharedViewModel : ViewModel() {
     fun getUserLastName():String{return lastName}
 
     //add available service
-    fun setAvailableServices(s:Service){
+    fun setAvailableServices(s: Service){
         availableServices.add(s)
     }
     fun getAvailableServices(): ArrayList<Service>{
@@ -30,10 +32,18 @@ class SharedViewModel : ViewModel() {
     }
 
     //add user subscription
-    fun setUserSubscription(s:Subscription){
+    fun setUserSubscription(s: Subscription){
         userSbscriptions.add(s)
     }
     fun getUserSubscriptions(): ArrayList<Subscription>{
         return userSbscriptions
+    }
+    fun updateService(s:String){
+        for(i in availableServices){
+            if(i.serviceName == s) {
+                i.isSubscribed = true
+                break
+            }
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.myrssfeedapp
+package com.example.myrssfeedapp.HomePackage
 
 data class Article(val articleID: Int,
                    val author:String,

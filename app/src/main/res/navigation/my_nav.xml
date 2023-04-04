@@ -6,12 +6,12 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.myrssfeedapp.HomeFragment"
+        android:name="com.example.myrssfeedapp.HomePackage.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.myrssfeedapp.SettingsFragment"
+        android:name="com.example.myrssfeedapp.SettingsPackage.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
     <fragment

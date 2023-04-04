@@ -7,9 +7,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.myrssfeedapp.SettingsPackage.Service
+import com.example.myrssfeedapp.SettingsPackage.Subscription
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.json.JSONArray
-import org.json.JSONObject
 
 class SessionActivity : AppCompatActivity() {
     private lateinit var bottomNavigation: BottomNavigationView
@@ -36,7 +37,7 @@ class SessionActivity : AppCompatActivity() {
             val serviceName = availableServices.getJSONObject(i).getString("serviceName")
             val serviceURL = availableServices.getJSONObject(i).getString("serviceURL")
             val serviceKEY = availableServices.getJSONObject(i).getString("serviceKEY")
-            val service = Service(serviceID,serviceName,serviceURL,serviceKEY)
+            val service = Service(serviceID,serviceName,serviceURL,serviceKEY,false)
             sharedViewModel.setAvailableServices(service)
         }
         //user subscriptions
@@ -47,6 +48,7 @@ class SessionActivity : AppCompatActivity() {
             val subscriptionID = userSubscriptions.getJSONObject(i).getInt("subscriptionID")
             val serviceName = userSubscriptions.getJSONObject(i).getString("serviceName")
             val subscription = Subscription(subscriptionID,serviceName)
+            sharedViewModel.updateService(serviceName)
             sharedViewModel.setUserSubscription(subscription)
         }
         if(userFirstName != null && userLastName != null){
