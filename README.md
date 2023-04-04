@@ -31,8 +31,8 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 
 * [x] User can log in.
 * [X] User can create an account.
-* [ ] Users can subscribe to websites through RSS (fallback; through API).
-* [ ] Users can see their subscription feed.
+* [X] Users can subscribe to websites through RSS (fallback; through API).
+* [X] Users can see their subscription feed.
 * [ ] Users can access articles through the feed by tapping on them.
 * [ ] Users can *un*subscribe from websites.
 * [ ] Users can manage their account (log out, delete account).
