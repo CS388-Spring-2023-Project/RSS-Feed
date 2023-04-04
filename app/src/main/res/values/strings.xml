@@ -20,4 +20,22 @@
     <string name="create_account_title">Create Account</string>
     <string name="home">Home</string>
     <string name="settings">Settings</string>
+    <string name="favorites">Favorites</string>
+    <string name="news_for_you">News for you</string>
+    <string name="settings_title">Settings</string>
+    <string name="edit">edit</string>
+    <string name="my_subscriptions">My Subscriptions</string>
+    <string name="notifications">Notifications</string>
+    <string name="profile_name">Profile name</string>
+    <string name="sign_out">Sign out</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="my_favorites">My Favorites</string>
+    <string name="username">Username</string>
+    <string name="our_services">Our Services</string>
+    <string name="update">Update</string>
+    <string name="update_name">Update Name</string>
+    <string name="lastname">lastname</string>
+    <string name="firstname">Firstname</string>
+    <string name="update_text">Update</string>
+    <string name="cancel">Cancel</string>
 </resources>

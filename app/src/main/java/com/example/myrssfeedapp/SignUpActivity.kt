@@ -3,9 +3,13 @@ package com.example.myrssfeedapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -47,8 +51,45 @@ class SignUpActivity : AppCompatActivity() {
                 helperObject.areIdentical(passwordContainer,cPasswordContainer) &&
                 helperObject.isValidEmail(emailContainer)){
 
-                println("hello")
                 //Do networking
+                val client = OkHttpClient()
+                val requestBody = FormBody.Builder()
+                    .add("signUp","")
+                    .add("firstName",fnameContainer.text.toString())
+                    .add("lastName",lnameContainer.text.toString())
+                    .add("email",emailContainer.text.toString())
+                    .add("password",passwordContainer.text.toString())
+                    .build()
+                val request = Request.Builder().url(helperObject.backendURL).method("POST",requestBody).build()
+                client.newCall(request).enqueue(object: Callback {
+                    override fun onFailure(call: Call, e: IOException) {
+                        Log.d("result","failure")
+                        Log.d("exception",e.toString())
+                    }
+
+                    override fun onResponse(call: Call, response: Response) {
+                        //Log.d("result","success")
+                        val jsonResult = response.body?.string()?.let { it1 -> JSONObject(it1) }
+                        Log.d("jsonResult",jsonResult.toString())
+                        if (jsonResult != null) {
+                            if(jsonResult.getInt("error") == 0){
+                                //Log.d("error","Account not found")
+                                //Toast.makeText(this@SignUpActivity,"This Email is already exist",Toast.LENGTH_LONG).show()
+                            } else if(jsonResult.getInt("error") == 2){
+                                Log.d("error","Error saving this record")
+                                //Toast.makeText(applicationContext,"Error saving this record",Toast.LENGTH_LONG).show()
+                            }
+                            else if(jsonResult.getInt("error") == 1){
+                                val intent = Intent(this@SignUpActivity,SessionActivity::class.java)
+                                intent.putExtra("myID",jsonResult.getInt("userID"))
+                                Log.d("MyID signIN",jsonResult.getInt("userID").toString())
+                                //Toast.makeText(applicationContext,"User created successfully",Toast.LENGTH_LONG).show()
+                                startActivity(intent)
+                                finish()
+                            }
+                        }
+                    }
+                })
             }
         }
     }

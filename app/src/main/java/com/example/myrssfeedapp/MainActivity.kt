@@ -65,23 +65,32 @@ class MainActivity : AppCompatActivity() {
                         if (jsonResult != null) {
                             if(jsonResult.getInt("error") == 0){
                                 //Log.d("error","Account not found")
-                                //Toast.makeText(,"This Email is already exist",Toast.LENGTH_LONG).show()
+                               // Toast.makeText(this@MainActivity.applicationContext,"record is not found",Toast.LENGTH_LONG)
+                                 //   .show()
                             } else if(jsonResult.getInt("error") == 2){
                                 Log.d("error","email or password incorrect")
-                                //Toast.makeText(context,"Error saving this record",Toast.LENGTH_LONG).show()
+//                                Toast.makeText(this@MainActivity,"Email or password incorrect",Toast.LENGTH_LONG)
+//                                    .show()
                             }
                             else if(jsonResult.getInt("error") == 1){
                                 val intent = Intent(this@MainActivity,SessionActivity::class.java)
-                                intent.putExtra("myID",jsonResult.getInt("userID"))
-                                Log.d("MyID signIN",jsonResult.getInt("userID").toString())
-                                //sharedViewModel.setMyID(jsonObject.getInt("userID"))
+                                val userID = jsonResult.getInt("userID")
+                                val userFirstName = jsonResult.getString("firstName")
+                                val userLastName = jsonResult.getString("lastName")
+                                val availableServices = jsonResult.getJSONArray("availableServices")
+                                val userSubscriptions = jsonResult.getJSONArray("userSubscriptions")
+                                Log.d("availableServices",availableServices.toString())
+                                intent.putExtra("userID",userID)
+                                intent.putExtra("firstName",userFirstName)
+                                intent.putExtra("lastName",userLastName)
+                                intent.putExtra("availableServices",availableServices.toString())
+                                intent.putExtra("userSubscriptions",userSubscriptions.toString())
                                 startActivity(intent)
+                                finish()
                             }
                         }
                     }
                 })
-
-
             }
         }
     }
