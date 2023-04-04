@@ -1,5 +1,4 @@
-# Milestone 1 - RSS Feed
-
+# Milestones
 ## Table of Contents
 
 1. [Overview](#Overview)
