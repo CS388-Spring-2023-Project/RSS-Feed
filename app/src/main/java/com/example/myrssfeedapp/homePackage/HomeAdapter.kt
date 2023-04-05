@@ -1,4 +1,4 @@
-package com.example.myrssfeedapp.HomePackage
+package com.example.myrssfeedapp.homePackage
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

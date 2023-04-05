@@ -1,4 +1,4 @@
-package com.example.myrssfeedapp.SettingsPackage
+package com.example.myrssfeedapp.settingsPackage
 
 data class Service ( val serviceID:Int,
                      val serviceName:String,

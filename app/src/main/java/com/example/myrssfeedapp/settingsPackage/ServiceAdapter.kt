@@ -1,4 +1,4 @@
-package com.example.myrssfeedapp.SettingsPackage
+package com.example.myrssfeedapp.settingsPackage
 
 import android.view.LayoutInflater
 import android.view.View

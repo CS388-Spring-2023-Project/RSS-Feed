@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.myrssfeedapp.SettingsPackage.Service
-import com.example.myrssfeedapp.SettingsPackage.Subscription
+import com.example.myrssfeedapp.settingsPackage.Service
+import com.example.myrssfeedapp.settingsPackage.Subscription
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.json.JSONArray
 
@@ -25,16 +25,18 @@ class SessionActivity : AppCompatActivity() {
         bottomNavigation.setupWithNavController(navigationController)
 
         val sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
-        val userID = intent.getIntExtra("myID",0)
+        val userID = intent.getIntExtra("userID",0)
         val userFirstName = intent.getStringExtra("firstName")
         val userLastName = intent.getStringExtra("lastName")
         //Available services
         val availableServicesStr = intent.getStringExtra("availableServices")
         val availableServices = JSONArray(availableServicesStr)
-        Log.d("avlServicesSession",availableServices.length().toString())
+        Log.d("avlServicesSession",availableServices.toString())
         for (i in 0 until availableServices.length()){
             val serviceID = availableServices.getJSONObject(i).getInt("serviceID")
+            Log.d("serviceID",serviceID.toString())
             val serviceName = availableServices.getJSONObject(i).getString("serviceName")
+            Log.d("serviceName",serviceName.toString())
             val serviceURL = availableServices.getJSONObject(i).getString("serviceURL")
             val serviceKEY = availableServices.getJSONObject(i).getString("serviceKEY")
             val service = Service(serviceID,serviceName,serviceURL,serviceKEY,false)
@@ -54,5 +56,7 @@ class SessionActivity : AppCompatActivity() {
         if(userFirstName != null && userLastName != null){
             sharedViewModel.setUserInfos(userID,userFirstName,userLastName)
         }
+        Log.d("services session ", sharedViewModel.getAvailableServices().toString())
+
     }
 }

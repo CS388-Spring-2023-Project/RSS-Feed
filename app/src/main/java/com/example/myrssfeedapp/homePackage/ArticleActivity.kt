@@ -1,4 +1,4 @@
-package com.example.myrssfeedapp.HomePackage
+package com.example.myrssfeedapp.homePackage
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
