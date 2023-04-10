@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myrssfeedapp.R
 
-class ServiceAdapter:RecyclerView.Adapter<ServiceAdapter.ServiceViewHolder>() {
+class ServiceAdapter(private var listener : (Service) -> Unit):RecyclerView.Adapter<ServiceAdapter.ServiceViewHolder>() {
     private var serviceList = ArrayList<Service>()
 
     class ServiceViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -25,6 +25,9 @@ class ServiceAdapter:RecyclerView.Adapter<ServiceAdapter.ServiceViewHolder>() {
         val currentService = serviceList[position]
         holder.serviceName.text = currentService.serviceName
         holder.isSubscribed.isChecked = currentService.isSubscribed
+        holder.isSubscribed.setOnCheckedChangeListener { _, _ ->
+            listener(currentService)
+        }
     }
 
     override fun getItemCount(): Int {

@@ -41,7 +41,41 @@ class SharedViewModel : ViewModel() {
     fun updateService(s:String){
         for(i in availableServices){
             if(i.serviceName == s) {
-                i.isSubscribed = true
+                i.isSubscribed = !i.isSubscribed
+                break
+            }
+        }
+    }
+    fun updateSubscription(){
+        for(i in userSubscriptions){
+            for(j in availableServices){
+                if(i.serviceName == j.serviceName && !j.isSubscribed){
+                    userSubscriptions.remove(i)
+                    return
+                }
+            }
+        }
+    }
+
+    fun unsubscribe(subscription_id:Int,service_name:String){
+        //update subscriptions
+        for(i in userSubscriptions){
+            if(i.subscriptionID == subscription_id) {
+                userSubscriptions.remove(i)
+                break
+            }
+        }
+        var service_id = 0
+        for(i in availableServices){
+            if(i.serviceName == service_name) {
+                service_id = i.serviceID
+                break
+            }
+        }
+        //update available services
+        for(i in availableServices){
+            if(i.serviceID == service_id) {
+                i.isSubscribed = false
                 break
             }
         }

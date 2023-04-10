@@ -149,24 +149,26 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         >
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/signOutButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginHorizontal="40dp"
-            android:background="@drawable/button_corners"
+            android:backgroundTint="@color/myYellow"
+            app:cornerRadius="30dp"
             android:text="@string/sign_out"
             android:textColor="@color/white"
             />
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/deleteButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="5dp"
             android:textColor="@color/white"
             android:text="@string/delete_account"
-            android:background="@drawable/delete_button"
+            android:backgroundTint="@color/pomegranate"
+            app:cornerRadius="30dp"
             android:layout_marginBottom="100dp"
             />
     </LinearLayout>

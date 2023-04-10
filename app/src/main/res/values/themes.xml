@@ -20,7 +20,5 @@
     </style>
     <style name="AppModelStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bottom_sheet_corners</item>
-
     </style>
-
 </resources>

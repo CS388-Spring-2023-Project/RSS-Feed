@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="60dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingVertical="5dp"
 
     >
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/serviceName"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="1">
-        <TextView
-            android:id="@+id/serviceName"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:textAlignment="viewStart"
-            android:textSize="19sp"
-            android:textColor="@color/charcoal"
-            android:layout_weight="0.7"/>
-        <TextView
-            android:id="@+id/unsubscribe"
-            android:layout_width="0dp"
-            android:text="Unsubscribe"
-            android:textAlignment="textEnd"
-            android:textSize="16sp"
-            android:textColor="@color/pomegranate"
-            android:layout_height="match_parent"
-            android:layout_weight="0.3"/>
-    </LinearLayout>
+        android:hint="dsfdsjfjfghdfg"
+        android:textAlignment="viewStart"
+        android:textSize="19sp"
+        android:textColor="@color/charcoal"
+        android:gravity="center"
+        tools:ignore="RtlCompat"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/unsubscribe"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/unsubscribe"
+        android:layout_width="wrap_content"
+        android:text="@string/unsubscribe"
+        android:textAlignment="textEnd"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/pomegranate"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:textSize="13sp"
+        tools:ignore="RtlCompat"
+        app:cornerRadius="25dp"
+        android:textAllCaps="false"
+        android:layout_alignParentEnd="true"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

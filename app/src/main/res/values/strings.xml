@@ -38,4 +38,5 @@
     <string name="firstname">Firstname</string>
     <string name="update_text">Update</string>
     <string name="cancel">Cancel</string>
+    <string name="unsubscribe">Unsubscribe</string>
 </resources>

@@ -17,11 +17,11 @@ class SessionActivity : AppCompatActivity() {
     private lateinit var navigationController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_session)
 
         bottomNavigation = findViewById(R.id.bottom_navigation)
         navigationController = findNavController(R.id.fragment)
-
         bottomNavigation.setupWithNavController(navigationController)
 
         val sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
@@ -31,7 +31,7 @@ class SessionActivity : AppCompatActivity() {
         //Available services
         val availableServicesStr = intent.getStringExtra("availableServices")
         val availableServices = JSONArray(availableServicesStr)
-        Log.d("avlServicesSession",availableServices.toString())
+        //Log.d("avlServicesSession",availableServices.toString())
         for (i in 0 until availableServices.length()){
             val serviceID = availableServices.getJSONObject(i).getInt("serviceID")
             Log.d("serviceID",serviceID.toString())
@@ -56,7 +56,5 @@ class SessionActivity : AppCompatActivity() {
         if(userFirstName != null && userLastName != null){
             sharedViewModel.setUserInfos(userID,userFirstName,userLastName)
         }
-        Log.d("services session ", sharedViewModel.getAvailableServices().toString())
-
     }
 }

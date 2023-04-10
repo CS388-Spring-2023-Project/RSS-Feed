@@ -29,8 +29,9 @@ class SettingsFragment : Fragment() {
     private lateinit var updateUserName:TextView
     private lateinit var subscriptionRV :RecyclerView
     private lateinit var deleteAccount:Button
+    private lateinit var signOut : Button
 
-    @SuppressLint("SetTextI18n", "InflateParams")
+    @SuppressLint("SetTextI18n", "InflateParams", "NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,10 +44,47 @@ class SettingsFragment : Fragment() {
         updateUserName = view.findViewById(R.id.edit)
         subscriptionRV = view.findViewById(R.id.subscriptionRV)
         deleteAccount = view.findViewById(R.id.deleteButton)
+        signOut = view.findViewById(R.id.signOutButton)
         subscriptionRV.layoutManager = LinearLayoutManager(requireContext())
-        val subscriptionAdapter = SubscriptionAdapter()
         val sharedVM = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         Log.d("services settings ", sharedVM.getAvailableServices().toString())
+
+        //create a subscription Adapter instance + unsubscribe(Listener)
+        val subscriptionAdapter = SubscriptionAdapter{
+            sharedVM.unsubscribe(it.subscriptionID,it.serviceName)
+            //update database
+
+
+            val client = OkHttpClient()
+            val requestBody = FormBody.Builder()
+                .add("unsubscribe","")
+                .add("subscriptionID",it.subscriptionID.toString())
+                .build()
+            val request = Request.Builder()
+                .url(helperClass.backendURL)
+                .method("POST",requestBody)
+                .build()
+            client.newCall(request).enqueue(object: Callback{
+                override fun onFailure(call: Call, e: IOException) {
+                    Log.d("result_unsubscribe","Failure")
+                    Log.d("exception_unsubscribe",e.toString())
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    Log.d("result_unsubscribe", "Success")
+                    val jsonResult = response.body?.string()?.let { it1 -> JSONObject(it1) }
+                    Log.d("jsonResult_unsubscribe", jsonResult.toString())
+                    if (jsonResult != null) {
+                        if (jsonResult.getInt("error") == 0) {
+                            Log.d("error", "Error unsubscribing the service")
+                        } else if (jsonResult.getInt("error") == 1) {
+                            Log.d("error", "service unsubscribed")
+                        }
+                    }
+                }
+            })
+        }
+
         //Update the username
         userFullName.text = "${sharedVM.getUserFirstName()} ${sharedVM.getUserLastName()}"
 
@@ -63,7 +101,10 @@ class SettingsFragment : Fragment() {
             val servicesRV: RecyclerView = serviceView.findViewById(R.id.servicesRV)
             servicesRV.layoutManager = LinearLayoutManager(this.requireContext())
             //val sharedVM = ViewModelProvider(this)[SharedViewModel::class.java]
-            val serviceAdapter = ServiceAdapter()
+            val serviceAdapter = ServiceAdapter{
+                sharedVM.updateService(it.serviceName)
+                sharedVM.updateSubscription()
+            }
             serviceAdapter.setData(sharedVM.getAvailableServices())
             Log.d("data",sharedVM.getAvailableServices().toString())
             servicesRV.adapter = serviceAdapter
@@ -75,7 +116,57 @@ class SettingsFragment : Fragment() {
             //update is pressed
             update.setOnClickListener{
                 //networking and update data & ui
+                for(i in sharedVM.getAvailableServices()){
+                    val client = OkHttpClient()
+                    val bodyRequest : FormBody = if(i.isSubscribed){
+                        FormBody.Builder()
+                            .add("subscribe","")
+                            .add("userID",sharedVM.getUserID().toString())
+                            .add("serviceID",i.serviceID.toString())
+                            .build()
 
+                    } else{
+                        FormBody.Builder()
+                            .add("unsubscribe2","")
+                            .add("userID",sharedVM.getUserID().toString())
+                            .add("serviceID",i.serviceID.toString())
+                            .build()
+                    }
+
+                    val request = Request.Builder()
+                        .url(helperClass.backendURL)
+                        .method("POST",bodyRequest)
+                        .build()
+                    client.newCall(request).enqueue(object:Callback{
+                        override fun onFailure(call: Call, e: IOException) {
+                            Log.d("result","Failure")
+                            Log.d("exception",e.toString())
+                        }
+
+                        override fun onResponse(call: Call, response: Response) {
+                            Log.d("result", "Success")
+                            val jsonResult = response.body?.string()?.let { it1 -> JSONObject(it1) }
+                            Log.d("jsonResult", jsonResult.toString())
+                            if (jsonResult != null) {
+                                if (jsonResult.getInt("error") == 0) {
+                                    if(i.isSubscribed) Log.d("error", "Error subscribing the service")
+                                    else Log.d("error", "Error unsubscribing the service")
+
+                                } else if (jsonResult.getInt("error") == 1) {
+                                    if(i.isSubscribed){
+                                        Log.d("error", "Success subscribing the service")
+                                        val subscriptionID = jsonResult.getInt("subscriptionID")
+                                        val serviceName = jsonResult.getString("serviceName")
+                                        sharedVM.setUserSubscription(Subscription(subscriptionID,serviceName))
+                                    }
+                                    else Log.d("error", "success unsubscribing the service")
+                                }
+                            }
+                        }
+                    })
+                    subscriptionAdapter.notifyDataSetChanged()
+                }
+                //subscriptionAdapter.setSubscriptions(sharedVM.getUserSubscriptions())
                 //dismiss the bottom-sheet
                 dialog.dismiss()
             }
@@ -200,6 +291,14 @@ class SettingsFragment : Fragment() {
             builder.setNegativeButton("Cancel", DialogInterface.OnClickListener(function = negativeButtonClick))
             builder.show()
         }
+
+        //Sign out
+        signOut.setOnClickListener {
+            val intent = Intent(requireContext(),MainActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        }
+
         return view
     }
 }
