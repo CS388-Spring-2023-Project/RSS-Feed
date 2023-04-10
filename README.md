@@ -97,3 +97,7 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 # Sprint 2
 ## User can Subscribe to RSS Feeds and see their subscription feed.
 ![part2](https://user-images.githubusercontent.com/62580207/229656554-cdb074e8-2072-4b08-a110-1d475fd101ca.gif)
+
+# Milestone 1
+## User can Subscribe to RSS Feeds and see their subscription feed.
+![Untitled](https://user-images.githubusercontent.com/62580207/231009844-a7516bb3-2052-44cf-94b0-eca2bc41ae82.gif)
