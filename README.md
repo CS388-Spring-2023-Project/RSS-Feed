@@ -6,7 +6,7 @@
 1. [Wireframes](#Wireframes)
 1. [Sprint 1](#Sprint-1)
 1. [Sprint 2](#Sprint-2)
-1. [Sprint 3](#Sprint-3-(Our-Milestone-4))
+1. [Sprint 3](#Sprint-3)
 ## Overview
 
 ### Description
@@ -99,6 +99,6 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 ## User can Subscribe to RSS Feeds and see their subscription feed.
 ![part2](https://user-images.githubusercontent.com/62580207/229656554-cdb074e8-2072-4b08-a110-1d475fd101ca.gif)
 
-# Sprint 3 (Our Milestone 4)
+# Sprint 3 
 ## Users can manage their account (log out, delete account), and *un*subscribe from Feeds.
 ![Untitled](https://user-images.githubusercontent.com/62580207/231009844-a7516bb3-2052-44cf-94b0-eca2bc41ae82.gif)
