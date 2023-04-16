@@ -34,7 +34,6 @@ class SettingsFragment : Fragment() {
     private lateinit var signOut : Button
 
 
-    @SuppressLint("SetTextI18n", "NotifyDataSetChanged", "InflateParams")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

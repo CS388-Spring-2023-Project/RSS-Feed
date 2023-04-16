@@ -69,7 +69,7 @@ class HomeFragment : Fragment() {
                         Log.d("result", "Success")
                         val jsonResult = response.body?.string()?.let { it1 -> JSONObject(it1) }
                         //Log.d("jsonResult", jsonResult.toString())
-
+                        //NY Times API
                         if(jsonResult != null && service.serviceID == 1){
                             val responseResult = jsonResult.getJSONObject("response")
                             val docs = responseResult.getJSONArray("docs")
@@ -109,6 +109,69 @@ class HomeFragment : Fragment() {
                                 if(image.isNotEmpty()){
                                     image = "https://www.nytimes.com/$image"
                                 }
+                                //Log.d("image",image)
+                                val articleEntity = ArticleEntity(0,title,content,image,author,publishedDate,source,articleURL)
+
+                                articleViewModel.addArticle(articleEntity)
+                            }
+                        }
+                        //CurrentsAPI
+                        else if(jsonResult != null && service.serviceID == 3){
+                            val docs = jsonResult.getJSONArray("news")
+                            for(i in 0 until docs.length()){
+                                if(!flag){
+                                    articleViewModel.deleteAll()
+                                    flag = !flag
+                                }
+                                val title = docs.getJSONObject(i)
+                                    .getString("title")
+                                val content = docs.getJSONObject(i)
+                                    .getString("description")
+                                var image = docs.getJSONObject(i).getString("image")
+                                if(image == "None"){
+                                    image = ""
+                                }
+
+                                val source = "CurrentsAPI"
+
+                                val author = docs.getJSONObject(i)
+                                    .getString("author")
+                                val publishedDate = docs.getJSONObject(i)
+                                    .getString("published")
+                                val articleURL = docs.getJSONObject(i)
+                                    .getString("url")
+
+                                //Log.d("image",image)
+                                val articleEntity = ArticleEntity(0,title,content,image,author,publishedDate,source,articleURL)
+
+                                articleViewModel.addArticle(articleEntity)
+                            }
+                        }
+                        //News API
+                        else if(jsonResult != null && service.serviceID == 4){
+                            val docs = jsonResult.getJSONArray("articles")
+                            for(i in 0 until docs.length()){
+                                if(!flag){
+                                    articleViewModel.deleteAll()
+                                    flag = !flag
+                                }
+                                val title = docs.getJSONObject(i)
+                                    .getString("title")
+                                val content = docs.getJSONObject(i)
+                                    .getString("content")
+                                val image = docs.getJSONObject(i).getString("urlToImage")
+
+                                val source = docs.getJSONObject(i)
+                                    .getJSONObject("source")
+                                    .getString("name")
+
+                                val author = docs.getJSONObject(i)
+                                    .getString("author")
+                                val publishedDate = docs.getJSONObject(i)
+                                    .getString("unknown")
+                                val articleURL = docs.getJSONObject(i)
+                                    .getString("url")
+
                                 //Log.d("image",image)
                                 val articleEntity = ArticleEntity(0,title,content,image,author,publishedDate,source,articleURL)
 
