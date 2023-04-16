@@ -16,7 +16,7 @@
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/favoriteFragment"
-        android:name="com.example.myrssfeedapp.FavoriteFragment"
+        android:name="com.example.myrssfeedapp.favoritesPackage.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
 </navigation>

@@ -39,4 +39,10 @@
     <string name="update_text">Update</string>
     <string name="cancel">Cancel</string>
     <string name="unsubscribe">Unsubscribe</string>
+    <string name="published">Published:</string>
+    <string name="author">author:</string>
+    <string name="source">source:</string>
+    <string name="url">url:</string>
+    <string name="published_date">published date:</string>
+    <string name="favorite">Favorite</string>
 </resources>

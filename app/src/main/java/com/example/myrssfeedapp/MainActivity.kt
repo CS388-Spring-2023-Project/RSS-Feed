@@ -9,6 +9,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.lifecycle.ViewModelProvider
+import com.example.myrssfeedapp.Room.ArticleViewModel
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
@@ -24,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         //Initialize our variables
         emailContainer = findViewById(R.id.email)
         passwordContainer = findViewById(R.id.password)

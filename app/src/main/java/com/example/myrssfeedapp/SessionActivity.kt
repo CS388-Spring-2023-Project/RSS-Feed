@@ -34,9 +34,9 @@ class SessionActivity : AppCompatActivity() {
         //Log.d("avlServicesSession",availableServices.toString())
         for (i in 0 until availableServices.length()){
             val serviceID = availableServices.getJSONObject(i).getInt("serviceID")
-            Log.d("serviceID",serviceID.toString())
+            //Log.d("serviceID",serviceID.toString())
             val serviceName = availableServices.getJSONObject(i).getString("serviceName")
-            Log.d("serviceName",serviceName.toString())
+           // Log.d("serviceName",serviceName.toString())
             val serviceURL = availableServices.getJSONObject(i).getString("serviceURL")
             val serviceKEY = availableServices.getJSONObject(i).getString("serviceKEY")
             val service = Service(serviceID,serviceName,serviceURL,serviceKEY,false)

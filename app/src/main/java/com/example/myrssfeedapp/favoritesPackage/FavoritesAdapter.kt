@@ -1,6 +1,5 @@
-package com.example.myrssfeedapp.homePackage
+package com.example.myrssfeedapp.favoritesPackage
 
-import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,30 +11,30 @@ import com.bumptech.glide.Glide
 import com.example.myrssfeedapp.R
 import com.example.myrssfeedapp.Room.ArticleEntity
 
-class HomeAdapter(private val listener: (ArticleEntity)->Unit) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+class FavoritesAdapter(private val listener: (ArticleEntity)->Unit) : RecyclerView.Adapter<FavoritesAdapter.FavoritesViewHolder>() {
     private var articlesList = emptyList<ArticleEntity>()
 
-    class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class FavoritesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title : TextView = view.findViewById(R.id.articleTitle)
-        val author :TextView = view.findViewById(R.id.author)
-        val dateTime :TextView = view.findViewById(R.id.dateTime)
-        val source :TextView = view.findViewById(R.id.source)
-        val image:ImageView = view.findViewById(R.id.articleImage)
+        val author : TextView = view.findViewById(R.id.author)
+        val dateTime : TextView = view.findViewById(R.id.dateTime)
+        val source : TextView = view.findViewById(R.id.source)
+        val image : ImageView = view.findViewById(R.id.articleImage)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.home_cell,parent,false)
-        return HomeViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.favorite_cell,parent,false)
+        return FavoritesViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FavoritesViewHolder, position: Int) {
         val currentArticle = articlesList[position]
 
         holder.author.text = currentArticle.articleAuthor
         holder.title.text = currentArticle.articleTitle
-        holder.dateTime.text = currentArticle.publishedDate.subSequence(0,10)
+        holder.dateTime.text = currentArticle.publishedDate
         holder.source.text = currentArticle.publisher
-        //val url = "https://www.nytimes.com/${currentArticle.articleImage}"
+
         Log.d("image link",currentArticle.articleImage)
         Glide.with(holder.itemView.context)
             .load(currentArticle.articleImage)
@@ -51,7 +50,7 @@ class HomeAdapter(private val listener: (ArticleEntity)->Unit) : RecyclerView.Ad
     override fun getItemCount(): Int {
         return articlesList.size
     }
-    @SuppressLint("NotifyDataSetChanged")
+
     fun setData(l:List<ArticleEntity>){
         articlesList=l
         notifyDataSetChanged()

@@ -1,6 +1,7 @@
 package com.example.myrssfeedapp
 
 import androidx.lifecycle.ViewModel
+import com.example.myrssfeedapp.Room.ArticleEntity
 import com.example.myrssfeedapp.settingsPackage.Service
 import com.example.myrssfeedapp.settingsPackage.Subscription
 
@@ -10,6 +11,9 @@ class SharedViewModel : ViewModel() {
     private var lastName : String = ""
     private var availableServices = ArrayList<Service>()
     private var userSubscriptions = ArrayList<Subscription>()
+
+    var chosenArticle : ArticleEntity? = null
+    var from : String? = null
 
     fun setUserInfos(id:Int,fName:String,lName:String){
         userID = id
@@ -51,7 +55,6 @@ class SharedViewModel : ViewModel() {
             for(j in availableServices){
                 if(i.serviceName == j.serviceName && !j.isSubscribed){
                     userSubscriptions.remove(i)
-                    return
                 }
             }
         }
@@ -79,5 +82,13 @@ class SharedViewModel : ViewModel() {
                 break
             }
         }
+    }
+
+    fun getServiceID(serviceName:String) : Int{
+        for(i in availableServices){
+            if(i.serviceName == serviceName)
+                return i.serviceID
+        }
+        return -1
     }
 }

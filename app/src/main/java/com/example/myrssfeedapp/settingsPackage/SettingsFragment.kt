@@ -1,5 +1,6 @@
 package com.example.myrssfeedapp.settingsPackage
 
+
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myrssfeedapp.HelperClass
 import com.example.myrssfeedapp.MainActivity
 import com.example.myrssfeedapp.R
+import com.example.myrssfeedapp.Room.ArticleViewModel
 import com.example.myrssfeedapp.SharedViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import okhttp3.*
@@ -31,7 +33,8 @@ class SettingsFragment : Fragment() {
     private lateinit var deleteAccount:Button
     private lateinit var signOut : Button
 
-    @SuppressLint("SetTextI18n", "InflateParams", "NotifyDataSetChanged")
+
+    @SuppressLint("SetTextI18n", "NotifyDataSetChanged", "InflateParams")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,11 +50,17 @@ class SettingsFragment : Fragment() {
         signOut = view.findViewById(R.id.signOutButton)
         subscriptionRV.layoutManager = LinearLayoutManager(requireContext())
         val sharedVM = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+        val articleVM = ViewModelProvider(requireActivity())[ArticleViewModel::class.java]
         Log.d("services settings ", sharedVM.getAvailableServices().toString())
 
         //create a subscription Adapter instance + unsubscribe(Listener)
         val subscriptionAdapter = SubscriptionAdapter{
             sharedVM.unsubscribe(it.subscriptionID,it.serviceName)
+            val serviceID = sharedVM.getServiceID(it.serviceName)
+            if(serviceID != 0){
+                //articleVM.deleteAllServiceArticles(serviceID)
+
+            }
             //update database
 
 
@@ -164,11 +173,10 @@ class SettingsFragment : Fragment() {
                             }
                         }
                     })
-                    subscriptionAdapter.notifyDataSetChanged()
                 }
-                //subscriptionAdapter.setSubscriptions(sharedVM.getUserSubscriptions())
-                //dismiss the bottom-sheet
+                //dismiss the bottom-sheet and update UI
                 dialog.dismiss()
+                subscriptionAdapter.notifyDataSetChanged()
             }
             dialog.setCancelable(false)
             dialog.setContentView(serviceView)
@@ -201,9 +209,9 @@ class SettingsFragment : Fragment() {
 
                     //update DB
                     val client = OkHttpClient()
-                    Log.d("firstname : ",firstName)
-                    Log.d("lastname : ",lastName)
-                    Log.d("userID : ",userID.toString())
+//                    Log.d("firstname : ",firstName)
+//                    Log.d("lastname : ",lastName)
+//                    Log.d("userID : ",userID.toString())
                     val requestBody = FormBody.Builder()
                         .add("updateUserName","")
                         .add("userID",userID.toString())
