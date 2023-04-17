@@ -3,7 +3,7 @@ package com.example.myrssfeedapp
 import android.widget.EditText
 
 class HelperClass {
-    val backendURL = "http://10.85.136.17/RssFeed/backend.php"
+    val backendURL = "http://192.168.56.1/rssfeed/backend.php"
     //check if a field is empty
     fun emptyField(field: EditText) : Boolean{
         if(field.text.isEmpty()){

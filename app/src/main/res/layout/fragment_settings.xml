@@ -83,22 +83,30 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@id/edit"
         android:layout_marginHorizontal="20dp">
+
         <TextView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.7"
-            android:text="@string/notifications"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.97"
+            android:text="@string/change_theme"
+            android:textColor="@color/charcoal"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/charcoal"/>
+            android:textStyle="bold" />
 
-        <Switch
-            android:id="@+id/pushedNotification"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.3"
-            android:layout_gravity="end"
-            tools:ignore="TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml" />
+        <ImageView
+            android:id="@+id/changeTheme"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_add"
+            android:layout_weight="0.03"
+            android:textAlignment="textEnd"/>
+<!--        <Switch-->
+<!--            android:id="@+id/pushedNotification"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="0.3"-->
+<!--            android:layout_gravity="end"-->
+<!--            tools:ignore="TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml" />-->
     </LinearLayout>
     <LinearLayout
         android:id="@+id/subscriptionTitle"
