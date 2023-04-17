@@ -1,5 +1,4 @@
-# Milestone 1 - RSS Feed
-
+# Milestones
 ## Table of Contents
 
 1. [Overview](#Overview)
@@ -7,6 +6,8 @@
 1. [Wireframes](#Wireframes)
 1. [Sprint 1](#Sprint-1)
 1. [Sprint 2](#Sprint-2)
+1. [Sprint 3](#Sprint-3)
+1. [Sprint 4](#Sprint-4)
 ## Overview
 
 ### Description
@@ -31,21 +32,19 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 
 * [x] User can log in.
 * [X] User can create an account.
-* [ ] Users can subscribe to websites through RSS (fallback; through API).
-* [ ] Users can see their subscription feed.
-* [ ] Users can access articles through the feed by tapping on them.
-* [ ] Users can *un*subscribe from websites.
-* [ ] Users can manage their account (log out, delete account).
-* [ ] Users can share articles with other users.
-* [ ] Users can receive notifications when a new story is posted.
-* [ ] Users can see the most popular subscriptions by other app users.
+* [X] Users can subscribe to websites through RSS (fallback; through API).
+* [X] Users can see their subscription feed.
+* [X] Users can manage their account (log out, delete account).
+* [x] Users can *un*subscribe from websites.
+* [X] Users can access articles through the feed by tapping on them.
+* [ ] Users can change themes of applications.
+* [ ] Filter feed by source, content type (article, podcast, etc), etc.
 
 **Stretch Features**
 
-* [ ] Additional settings; appearence, filters.
 * [ ] "Real time" updates (app checks for updates in real time and tells users when there is something new if they refresh; like the tumblr app).
 * [ ] Push notifications when websites are updated (can be adjusted on a per-website basis).
-* [ ] Filter feed by source, content type (article, podcast, etc), etc.
+
 
 ### 2. Screen Archetypes
 
@@ -96,5 +95,13 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 ![Untitled](https://user-images.githubusercontent.com/62580207/228110034-66188a0f-2429-4a2d-81d2-0bb6736f6d44.gif)
 
 # Sprint 2
-## User can Subscribe to RSS Feeds
+## User can Subscribe to RSS Feeds and see their subscription feed.
 ![part2](https://user-images.githubusercontent.com/62580207/229656554-cdb074e8-2072-4b08-a110-1d475fd101ca.gif)
+
+# Sprint 3 
+## Users can manage their account (log out, delete account), and *un*subscribe from Feeds.
+![Untitled](https://user-images.githubusercontent.com/62580207/231009844-a7516bb3-2052-44cf-94b0-eca2bc41ae82.gif)
+
+# Sprint 4 
+## Users can access articles through the feed by tapping on them.
+![part3](https://user-images.githubusercontent.com/62580207/232624633-6b105b38-d695-4f8c-a6ad-e8b966049c8c.gif)
