@@ -7,6 +7,7 @@
 1. [Sprint 1](#Sprint-1)
 1. [Sprint 2](#Sprint-2)
 1. [Sprint 3](#Sprint-3)
+1. [Sprint 4](#Sprint-4)
 ## Overview
 
 ### Description
@@ -35,7 +36,7 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 * [X] Users can see their subscription feed.
 * [X] Users can manage their account (log out, delete account).
 * [x] Users can *un*subscribe from websites.
-* [ ] Users can access articles through the feed by tapping on them.
+* [X] Users can access articles through the feed by tapping on them.
 * [ ] Users can change themes of applications.
 * [ ] Users can receive notifications when a new story is posted.
 * [ ] Users can see the most popular subscriptions by other app users.
@@ -103,4 +104,5 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 ![Untitled](https://user-images.githubusercontent.com/62580207/231009844-a7516bb3-2052-44cf-94b0-eca2bc41ae82.gif)
 
 # Sprint 4 
+## Users can access articles through the feed by tapping on them.
 ![part3](https://user-images.githubusercontent.com/62580207/232624633-6b105b38-d695-4f8c-a6ad-e8b966049c8c.gif)
