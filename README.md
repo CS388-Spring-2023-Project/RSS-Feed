@@ -44,6 +44,7 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 
 * [ ] "Real time" updates (app checks for updates in real time and tells users when there is something new if they refresh; like the tumblr app).
 * [ ] Push notifications when websites are updated (can be adjusted on a per-website basis).
+* [ ] Users can see the most popular subscriptions by other app users.
 
 
 ### 2. Screen Archetypes
