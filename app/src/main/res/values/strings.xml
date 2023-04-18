@@ -27,6 +27,7 @@
     <string name="my_subscriptions">My Subscriptions</string>
     <string name="notifications">Notifications</string>
     <string name="change_theme">Change Theme</string>
+    <string name="change_theme_title">Theme Styles</string>
     <string name="profile_name">Profile name</string>
     <string name="sign_out">Sign out</string>
     <string name="delete_account">Delete Account</string>

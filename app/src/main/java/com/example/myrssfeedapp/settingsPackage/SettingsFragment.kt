@@ -28,6 +28,7 @@ import java.io.IOException
 class SettingsFragment : Fragment() {
     private lateinit var userFullName:TextView
     private lateinit var addService:ImageView
+    private lateinit var changeTheme:ImageView
     private lateinit var updateUserName:TextView
     private lateinit var subscriptionRV :RecyclerView
     private lateinit var deleteAccount:Button
@@ -47,6 +48,7 @@ class SettingsFragment : Fragment() {
         subscriptionRV = view.findViewById(R.id.subscriptionRV)
         deleteAccount = view.findViewById(R.id.deleteButton)
         signOut = view.findViewById(R.id.signOutButton)
+        changeTheme = view.findViewById(R.id.changeTheme)
         subscriptionRV.layoutManager = LinearLayoutManager(requireContext())
         val sharedVM = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         val articleVM = ViewModelProvider(requireActivity())[ArticleViewModel::class.java]
@@ -99,6 +101,8 @@ class SettingsFragment : Fragment() {
         //update subscriptions
         subscriptionAdapter.setSubscriptions(sharedVM.getUserSubscriptions())
         subscriptionRV.adapter = subscriptionAdapter
+
+        //----------------------------------------- ADD SERVICES BUTTON----------------------------------------------
         //add service button is clicked
         addService.setOnClickListener{
             //displaying the bottom sheet
@@ -177,11 +181,36 @@ class SettingsFragment : Fragment() {
                 dialog.dismiss()
                 subscriptionAdapter.notifyDataSetChanged()
             }
+
             dialog.setCancelable(false)
             dialog.setContentView(serviceView)
             dialog.show()
         }
+        //------------------------------------END ADD SERVCIES-----------------------------------------------
 
+        //------------------------------------CHANGE THEME---------------------------------------------------
+        // test theme name is "Theme.MyRssFeedApp.BlueTheme"
+        changeTheme.setOnClickListener{
+            val dialog1 = BottomSheetDialog(this.requireContext())
+            val serviceView = layoutInflater.inflate(R.layout.change_theme,null)
+            val updateTheme:Button = serviceView.findViewById(R.id.updateTheme)
+            val cancelTheme:Button = serviceView.findViewById(R.id.cancelTheme)
+            val servicesRV1: RecyclerView = serviceView.findViewById(R.id.themesRV)
+            servicesRV1.layoutManager = LinearLayoutManager(this.requireContext())
+            updateTheme.setOnClickListener{
+                Log.d("UpdateTheme","changeTheme buttom was clicked")
+                // how to change theme ========>  R.style.Theme_MyRssFeedApp_BlueTheme
+            }
+            cancelTheme.setOnClickListener {
+                dialog1.dismiss()
+            }
+
+            dialog1.dismiss()
+            dialog1.setCancelable(false)
+            dialog1.setContentView(serviceView)
+            dialog1.show()
+        }
+        //----------------------------------END CHANGE THEME-------------------------------------------------
         //update username
         updateUserName.setOnClickListener {
             val dialog = BottomSheetDialog(this.requireContext(),R.style.AppBottomSheetDialogTheme)
