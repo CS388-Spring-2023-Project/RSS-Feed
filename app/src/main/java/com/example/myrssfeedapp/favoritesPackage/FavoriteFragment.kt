@@ -7,18 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myrssfeedapp.HelperClass
 import com.example.myrssfeedapp.R
 import com.example.myrssfeedapp.Room.ArticleEntity
 import com.example.myrssfeedapp.SharedViewModel
-import com.example.myrssfeedapp.homePackage.ArticleFragment
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
-@Suppress("DEPRECATION")
+
 class FavoriteFragment : Fragment(){
     private lateinit var favoritesRV :RecyclerView
 
@@ -34,11 +34,7 @@ class FavoriteFragment : Fragment(){
         favoritesRV.layoutManager = LinearLayoutManager(this.requireContext())
         val favoritesAdapter = FavoritesAdapter{
             sharedVM.chosenArticle = it
-            sharedVM.from = "favoritesFragment"
-            val articleFragment = ArticleFragment()
-            val fragmentTransaction = fragmentManager?.beginTransaction()
-            fragmentTransaction?.replace(R.id.fragment,articleFragment)
-            fragmentTransaction?.commit()
+            Navigation.findNavController(view).navigate(R.id.to_favoriteArticleFragment)
         }
 
         //val articleVM = ViewModelProvider(requireActivity())[ArticleViewModel::class.java]
@@ -62,13 +58,15 @@ class FavoriteFragment : Fragment(){
             override fun onResponse(call: Call, response: Response) {
                 Log.d("result", "Success")
                 val jsonResult = response.body?.string()?.let { it1 -> JSONObject(it1) }
-                Log.d("favorites", jsonResult.toString())
+                //Log.d("favorites", jsonResult.toString())
                 if(jsonResult != null){
                     val error = jsonResult.getInt("error")
                     if(error == 0) Log.d("Error", "Error getting user favorites articles")
                     else if(error == 1){
                         val favorites = jsonResult.getJSONArray("favorites")
+                        Log.d("favorites",favorites.toString())
                         for(i in 0 until  favorites.length()){
+                            val favoriteID = favorites.getJSONObject(i).getInt("favoriteID")
                             val articleTitle = favorites.getJSONObject(i).getString("articleTitle")
                             val articleAuthor = favorites.getJSONObject(i).getString("articleAuthor")
                             val articleSource = favorites.getJSONObject(i).getString("articleSource")
@@ -77,7 +75,7 @@ class FavoriteFragment : Fragment(){
                             val articleDateTime = favorites.getJSONObject(i).getString("articleDateTime")
                             val articleImage = favorites.getJSONObject(i).getString("articleImage")
 
-                            val favoriteEntity = ArticleEntity(0,articleTitle,articleContent,articleImage,articleAuthor,articleDateTime,articleSource,articleURL)
+                            val favoriteEntity = ArticleEntity(favoriteID,articleTitle,articleContent,articleImage,articleAuthor,articleDateTime,articleSource,articleURL)
                             favoritesList.add(favoriteEntity)
                         }
                         requireActivity().runOnUiThread {

@@ -79,7 +79,7 @@
             android:layout_weight="0.45"
             android:layout_height="60dp"
             app:cornerRadius="30dp"
-            android:backgroundTint="@color/myYellow"
+            android:backgroundTint="@color/color1"
             android:text="@string/cancel"
             android:padding="15dp"
             app:layout_constraintStart_toStartOf="parent"

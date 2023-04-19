@@ -1,4 +1,4 @@
-package com.example.myrssfeedapp.homePackage
+package com.example.myrssfeedapp.favoritesPackage
 
 import android.content.Intent
 import android.net.Uri
@@ -21,7 +21,8 @@ import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
-class ArticleFragment : Fragment() {
+
+class FavoriteArticleFragment : Fragment() {
     private lateinit var articleImage : ImageView
     private lateinit var articleContent : TextView
     private lateinit var articleAuthor : TextView
@@ -30,13 +31,13 @@ class ArticleFragment : Fragment() {
     private lateinit var articleURL : TextView
     private lateinit var articleSource : TextView
     private lateinit var backButton : ImageView
-    private lateinit var favorite : ImageView
+    private lateinit var delete : ImageView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_article, container, false)
+        val view = inflater.inflate(R.layout.fragment_favorite_article, container, false)
         articleImage = view.findViewById(R.id.articleImage)
         articleTitle = view.findViewById(R.id.articleTitle)
         articleContent = view.findViewById(R.id.articleContent)
@@ -44,7 +45,7 @@ class ArticleFragment : Fragment() {
         articleURL = view.findViewById(R.id.articleURL)
         articleSource = view.findViewById(R.id.articleSource)
         articleAuthor = view.findViewById(R.id.articleAuthor)
-        favorite = view.findViewById(R.id.favorite)
+        delete = view.findViewById(R.id.delete)
         backButton = view.findViewById(R.id.backButton)
         val sharedVM = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         val helperClass = HelperClass()
@@ -66,21 +67,14 @@ class ArticleFragment : Fragment() {
 
         //Back Button pressed
         backButton.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.to_homeFragment)
+            Navigation.findNavController(view).navigate(R.id.to_favoriteFragment)
         }
 
-        favorite.setOnClickListener {
+        delete.setOnClickListener {
             val client = OkHttpClient()
             val bodyRequest = FormBody.Builder()
-                .add("addToFavorite","")
-                .add("userID",sharedVM.getUserID().toString())
-                .add("articleTitle",articleTitle.text.toString())
-                .add("articleContent",articleContent.text.toString())
-                .add("articleImage",articleEntity?.articleImage.toString())
-                .add("articleAuthor",articleAuthor.text.toString())
-                .add("articleURL",articleURL.text.toString())
-                .add("articlePub_date",articlePub_date.text.toString())
-                .add("articleSource",articleSource.text.toString())
+                .add("deleteFavoriteArticle","")
+                .add("favoriteID",articleEntity?.articleID.toString())
                 .build()
             val request = Request.Builder().url(helperClass.backendURL)
                 .method("POST",bodyRequest)
@@ -96,17 +90,17 @@ class ArticleFragment : Fragment() {
                     val jsonResult = response.body?.string()?.let { it1 -> JSONObject(it1) }
                     if (jsonResult != null) {
                         if (jsonResult.getInt("error") == 0) {
-                            //Log.d("error","Error adding this article to favorites")
                             requireActivity().runOnUiThread {
-                                Toast.makeText(requireActivity(),"Error adding this article to favorites",
+                                Toast.makeText(requireContext(),"Error deleting this article from favorites",
                                     Toast.LENGTH_LONG).show()
                             }
+                            //Log.d("error","Error deleting this article from favorites")
                         } else if (jsonResult.getInt("error") == 1) {
-                           // Log.d("error", "Article is added to favorites successfully")
                             requireActivity().runOnUiThread {
-                                Toast.makeText(requireActivity(),"Article is added to favorites successfully",
+                                Toast.makeText(requireContext(),"Article is deleted successfully",
                                     Toast.LENGTH_LONG).show()
                             }
+                            //Log.d("error", "Article is deleted successfully")
                         }
                     }
                 }
@@ -117,7 +111,7 @@ class ArticleFragment : Fragment() {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(articleEntity?.articleURL))
             startActivity(intent,null)
         }
-
         return view
     }
+
 }

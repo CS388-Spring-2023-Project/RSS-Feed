@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
@@ -18,6 +19,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var emailContainer : EditText
     private lateinit var passwordContainer : EditText
     private lateinit var cPasswordContainer : EditText
+    private lateinit var secretCode : EditText
     private lateinit var haveAccount : TextView
     private lateinit var signUp : Button
 
@@ -32,6 +34,7 @@ class SignUpActivity : AppCompatActivity() {
         passwordContainer = findViewById(R.id.password)
         cPasswordContainer = findViewById(R.id.cPassword)
         haveAccount = findViewById(R.id.haveAccountButton)
+        secretCode = findViewById(R.id.secretCode)
         signUp = findViewById(R.id.signUpButton)
 
         val helperObject = HelperClass()
@@ -48,6 +51,7 @@ class SignUpActivity : AppCompatActivity() {
                 !helperObject.emptyField(emailContainer) &&
                 !helperObject.emptyField(passwordContainer) &&
                 !helperObject.emptyField(cPasswordContainer) &&
+                !helperObject.emptyField(secretCode) &&
                 helperObject.areIdentical(passwordContainer,cPasswordContainer) &&
                 helperObject.isValidEmail(emailContainer)){
 
@@ -59,6 +63,7 @@ class SignUpActivity : AppCompatActivity() {
                     .add("lastName",lnameContainer.text.toString())
                     .add("email",emailContainer.text.toString())
                     .add("password",passwordContainer.text.toString())
+                    .add("secretCode",secretCode.text.toString())
                     .build()
                 val request = Request.Builder().url(helperObject.backendURL).method("POST",requestBody).build()
                 client.newCall(request).enqueue(object: Callback {
@@ -73,17 +78,25 @@ class SignUpActivity : AppCompatActivity() {
                         Log.d("jsonResult",jsonResult.toString())
                         if (jsonResult != null) {
                             if(jsonResult.getInt("error") == 0){
-                                //Log.d("error","Account not found")
-                                //Toast.makeText(this@SignUpActivity,"This Email is already exist",Toast.LENGTH_LONG).show()
+                                this@SignUpActivity.runOnUiThread {
+                                    Toast.makeText(this@SignUpActivity,"This Email is already exist",
+                                        Toast.LENGTH_LONG).show()
+                                }
                             } else if(jsonResult.getInt("error") == 2){
                                 Log.d("error","Error saving this record")
-                                //Toast.makeText(applicationContext,"Error saving this record",Toast.LENGTH_LONG).show()
+                                this@SignUpActivity.runOnUiThread {
+                                    Toast.makeText(this@SignUpActivity,"Error saving this record",
+                                        Toast.LENGTH_LONG).show()
+                                }
                             }
                             else if(jsonResult.getInt("error") == 1){
+                                this@SignUpActivity.runOnUiThread {
+                                    Toast.makeText(this@SignUpActivity,"Record is created successfully",
+                                        Toast.LENGTH_LONG).show()
+                                }
                                 val intent = Intent(this@SignUpActivity,SessionActivity::class.java)
                                 intent.putExtra("myID",jsonResult.getInt("userID"))
                                 Log.d("MyID signIN",jsonResult.getInt("userID").toString())
-                                //Toast.makeText(applicationContext,"User created successfully",Toast.LENGTH_LONG).show()
                                 startActivity(intent)
                                 finish()
                             }

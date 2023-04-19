@@ -51,7 +51,7 @@ class HomeAdapter(private val listener: (ArticleEntity)->Unit) : RecyclerView.Ad
     override fun getItemCount(): Int {
         return articlesList.size
     }
-    @SuppressLint("NotifyDataSetChanged")
+
     fun setData(l:List<ArticleEntity>){
         articlesList=l
         notifyDataSetChanged()

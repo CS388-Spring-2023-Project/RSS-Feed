@@ -7,10 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.replace
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myrssfeedapp.R
@@ -37,21 +35,12 @@ class HomeFragment : Fragment() {
         val sharedVM = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         val homeAdapter = HomeAdapter{
             sharedVM.chosenArticle = it
-            sharedVM.from = "homeFragment"
-            val articleFragment = ArticleFragment()
-            val fragmentTransaction = fragmentManager?.beginTransaction()
-            fragmentTransaction?.replace(R.id.fragment,articleFragment)
-            fragmentTransaction?.isAddToBackStackAllowed
-            fragmentTransaction?.commit()
-
+            Navigation.findNavController(view).navigate(R.id.to_articleFragment)
         }
 
 
         //get user subscriptions
         val services = sharedVM.getAvailableServices()
-        //Log.d("services home ", sharedVM.getAvailableServices().toString())
-        // keep in mind that we have isSubscribed parameter
-        // that we will use to pick user subscriptions
         var flag = false
         for(service in services){
             if(service.isSubscribed) {
@@ -68,7 +57,7 @@ class HomeFragment : Fragment() {
                     override fun onResponse(call: Call, response: Response) {
                         Log.d("result", "Success")
                         val jsonResult = response.body?.string()?.let { it1 -> JSONObject(it1) }
-                        //Log.d("jsonResult", jsonResult.toString())
+                        Log.d("jsonResult", jsonResult.toString())
                         //NY Times API
                         if(jsonResult != null && service.serviceID == 1){
                             val responseResult = jsonResult.getJSONObject("response")
@@ -131,7 +120,6 @@ class HomeFragment : Fragment() {
                                 if(image == "None"){
                                     image = ""
                                 }
-
                                 val source = "CurrentsAPI"
 
                                 val author = docs.getJSONObject(i)
@@ -150,6 +138,7 @@ class HomeFragment : Fragment() {
                         //News API
                         else if(jsonResult != null && service.serviceID == 4){
                             val docs = jsonResult.getJSONArray("articles")
+                            Log.d("newsAPI",docs.toString())
                             for(i in 0 until docs.length()){
                                 if(!flag){
                                     articleViewModel.deleteAll()
@@ -168,7 +157,7 @@ class HomeFragment : Fragment() {
                                 val author = docs.getJSONObject(i)
                                     .getString("author")
                                 val publishedDate = docs.getJSONObject(i)
-                                    .getString("unknown")
+                                    .getString("publishedAt")
                                 val articleURL = docs.getJSONObject(i)
                                     .getString("url")
 
@@ -180,7 +169,6 @@ class HomeFragment : Fragment() {
                         }
                     }
                 })
-
             }
         }
 

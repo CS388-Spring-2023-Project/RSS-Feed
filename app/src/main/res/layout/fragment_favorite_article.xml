@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".homePackage.ArticleFragment"
+    tools:context=".favoritesPackage.FavoriteArticleFragment"
     >
     <RelativeLayout
         android:id="@+id/topBar"
@@ -20,11 +20,11 @@
             android:layout_marginStart="20dp"
             />
         <ImageView
-            android:id="@+id/favorite"
+            android:id="@+id/delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_favorite_empty"
+            android:src="@drawable/ic_delete"
             android:layout_marginEnd="20dp"
             android:layout_alignParentEnd="true"
             />
@@ -126,10 +126,10 @@
                     android:layout_height="match_parent"
                     android:ellipsize="end"
                     android:maxLines="2"
+                    android:fontFamily="sans-serif"
                     android:paddingStart="10dp"
                     android:textColor="@color/brightBlue"
                     android:textSize="15sp"
-                    android:fontFamily="sans-serif"
                     tools:ignore="RtlSymmetry,TextViewEdits,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
             </LinearLayout>
             <LinearLayout
@@ -150,8 +150,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textSize="15sp"
-                    android:paddingStart="10dp"
                     android:fontFamily="sans-serif"
+                    android:paddingStart="10dp"
                     tools:ignore="RtlSymmetry" />
             </LinearLayout>
         </LinearLayout>

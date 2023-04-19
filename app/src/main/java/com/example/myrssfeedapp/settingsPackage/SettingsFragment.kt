@@ -34,6 +34,7 @@ class SettingsFragment : Fragment() {
     private lateinit var signOut : Button
 
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,20 +50,13 @@ class SettingsFragment : Fragment() {
         signOut = view.findViewById(R.id.signOutButton)
         subscriptionRV.layoutManager = LinearLayoutManager(requireContext())
         val sharedVM = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
-        val articleVM = ViewModelProvider(requireActivity())[ArticleViewModel::class.java]
-        Log.d("services settings ", sharedVM.getAvailableServices().toString())
+        //Log.d("services settings ", sharedVM.getAvailableServices().toString())
 
         //create a subscription Adapter instance + unsubscribe(Listener)
         val subscriptionAdapter = SubscriptionAdapter{
             sharedVM.unsubscribe(it.subscriptionID,it.serviceName)
-            val serviceID = sharedVM.getServiceID(it.serviceName)
-            if(serviceID != 0){
-                //articleVM.deleteAllServiceArticles(serviceID)
 
-            }
             //update database
-
-
             val client = OkHttpClient()
             val requestBody = FormBody.Builder()
                 .add("unsubscribe","")
@@ -79,14 +73,22 @@ class SettingsFragment : Fragment() {
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    Log.d("result_unsubscribe", "Success")
+                    //Log.d("result_unsubscribe", "Success")
                     val jsonResult = response.body?.string()?.let { it1 -> JSONObject(it1) }
-                    Log.d("jsonResult_unsubscribe", jsonResult.toString())
+                    //Log.d("jsonResult_unsubscribe", jsonResult.toString())
                     if (jsonResult != null) {
                         if (jsonResult.getInt("error") == 0) {
-                            Log.d("error", "Error unsubscribing the service")
+                            //Log.d("error", "Error unsubscribing the service")
+                            requireActivity().runOnUiThread{
+                                Toast.makeText(requireActivity(),
+                                    "Error unsubscribing the service",Toast.LENGTH_LONG).show()
+                            }
                         } else if (jsonResult.getInt("error") == 1) {
-                            Log.d("error", "service unsubscribed")
+                            requireActivity().runOnUiThread{
+                                Toast.makeText(requireActivity(),
+                                    "service unsubscribed successfully",Toast.LENGTH_LONG).show()
+                            }
+                            //Log.d("error", "service unsubscribed")
                         }
                     }
                 }
@@ -114,7 +116,7 @@ class SettingsFragment : Fragment() {
                 sharedVM.updateSubscription()
             }
             serviceAdapter.setData(sharedVM.getAvailableServices())
-            Log.d("data",sharedVM.getAvailableServices().toString())
+            //Log.d("data",sharedVM.getAvailableServices().toString())
             servicesRV.adapter = serviceAdapter
 
             //cancel is pressed
@@ -234,9 +236,17 @@ class SettingsFragment : Fragment() {
                             Log.d("jsonResult", jsonResult.toString())
                             if (jsonResult != null) {
                                 if (jsonResult.getInt("error") == 0) {
-                                    Log.d("error", "Error updating Record")
+                                    //Log.d("error", "Error updating Record")
+                                    requireActivity().runOnUiThread{
+                                        Toast.makeText(requireActivity(),
+                                            "Error updating Record",Toast.LENGTH_LONG).show()
+                                    }
                                 } else if (jsonResult.getInt("error") == 1) {
-                                    Log.d("error", "Record Updated")
+                                    //Log.d("error", "Record Updated")
+                                    requireActivity().runOnUiThread{
+                                        Toast.makeText(requireActivity(),
+                                            "Record updated successfully",Toast.LENGTH_LONG).show()
+                                    }
                                 }
                             }
                         }
@@ -279,9 +289,17 @@ class SettingsFragment : Fragment() {
                         Log.d("jsonResult", jsonResult.toString())
                         if (jsonResult != null) {
                             if (jsonResult.getInt("error") == 0) {
-                                Log.d("error", "Error deleting the account")
+                                //Log.d("error", "Error deleting the account")
+                                requireActivity().runOnUiThread{
+                                    Toast.makeText(requireActivity(),
+                                        "Error deleting the account",Toast.LENGTH_LONG).show()
+                                }
                             } else if (jsonResult.getInt("error") == 1) {
-                                Log.d("error", "Record deleted")
+                                //Log.d("error", "Record deleted")
+                                requireActivity().runOnUiThread{
+                                    Toast.makeText(requireActivity(),
+                                        "Record is deleted successfully",Toast.LENGTH_LONG).show()
+                                }
                                 //Toast.makeText(,"Account successfully deleted",Toast.LENGTH_LONG).show()
                                 val intent = Intent(requireContext(),MainActivity::class.java)
                                 startActivity(intent)

@@ -22,9 +22,10 @@
         android:layout_toEndOf="@id/articleImage"
         android:layout_alignTop="@id/articleImage"
         android:layout_alignParentEnd="true"
-        android:textColor="@color/black"
+        android:textColor="@color/color4"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:fontFamily="sans-serif"
         android:layout_marginHorizontal="10dp"
         />
     <TextView
@@ -38,7 +39,8 @@
         android:textStyle="italic"
         android:maxLines="1"
         android:ellipsize="end"
-        android:textColor="@color/charcoal"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/color4"
         android:layout_alignEnd="@id/articleTitle"/>
     <TextView
         android:id="@+id/source"
@@ -47,7 +49,8 @@
         android:layout_above="@id/date"
         android:layout_alignStart="@id/articleTitle"
         android:layout_alignEnd="@id/articleTitle"
-        android:textColor="@color/charcoal"
+        android:textColor="@color/color4"
+        android:fontFamily="sans-serif"
         android:layout_marginBottom="5dp"
         />
     <LinearLayout
@@ -65,13 +68,15 @@
             android:layout_height="match_parent"
             android:text="@string/published"
             android:layout_weight="0.4"
-            android:textColor="@color/charcoal"/>
+            android:fontFamily="sans-serif"
+            android:textColor="@color/color4"/>
         <TextView
             android:id="@+id/dateTime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.6"
             android:textSize="13sp"
+            android:fontFamily="sans-serif"
             android:textAlignment="textEnd"
             />
     </LinearLayout>
