@@ -10,16 +10,16 @@ import com.example.myrssfeedapp.R
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    private var currentTheme = YELLOW
+    public var currentTheme = YELLOW
 
     override fun onCreate(savedInstanceState: Bundle?) {
         currentTheme = PreferenceManager.getDefaultSharedPreferences(this).getInt(KEY_THEME, YELLOW)
         super.onCreate(savedInstanceState)
     }
 
-    protected fun setTheme() { setTheme(currentTheme) }
+    public  fun setTheme() { setTheme(currentTheme) }
 
-    protected fun switchTheme() {
+    public fun switchTheme() {
         currentTheme = when(currentTheme) {
             YELLOW-> BLUE
             BLUE -> YELLOW
@@ -32,6 +32,6 @@ abstract class BaseActivity : AppCompatActivity() {
     companion object {
         private const val KEY_THEME = "Theme"
         private const val YELLOW = R.style.Theme_MyRssFeedApp
-        private const val BLUE = R.style.Theme_MyRssFeedApp_BlueTheme
+        private const val BLUE = R.style.Theme_MyRssFeedAppBlue
     }
 }

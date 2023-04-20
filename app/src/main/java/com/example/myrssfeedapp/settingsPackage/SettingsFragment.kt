@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,7 +28,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
-//import com.example.myrssfeedapp.settingsPackage.BaseActivity
+import com.example.myrssfeedapp.settingsPackage.BaseActivity
 
 class SettingsFragment : Fragment() {
     private lateinit var userFullName:TextView
@@ -196,36 +197,30 @@ class SettingsFragment : Fragment() {
         changeTheme.setOnClickListener{
             val dialog1 = BottomSheetDialog(this.requireContext())
             val themeView = layoutInflater.inflate(R.layout.change_theme,null)
+            val blueTheme:Button = themeView.findViewById(R.id.blueTheme)
+            val pinkTheme:Button = themeView.findViewById(R.id.pinkTheme)
+            val yellowTheme:Button = themeView.findViewById(R.id.yellowTheme)
+            val greenTheme:Button = themeView.findViewById(R.id.greenTheme)
             val updateTheme:Button = themeView.findViewById(R.id.updateTheme)
             val cancelTheme:Button = themeView.findViewById(R.id.cancelTheme)
-            val themeRV: RecyclerView = themeView.findViewById(R.id.themesRV)
-            themeRV.layoutManager = LinearLayoutManager(this.requireContext())
-
-            var themesArr: Array<String> = arrayOf("Blue","Red","Green")
-            val arrThemes = arrayListOf<Themes>()
-
-            for( i in themesArr.indices){
-                val theme = Themes(themesArr[i],false)
-                arrThemes.add(theme)
-            }
-            themeRV.adapter = ThemeAdapter(arrThemes)
-
-            updateTheme.setOnClickListener{
+            blueTheme.setOnClickListener{
                 //Context ctx = getContext()
-                Log.d("UpdateTheme","changeTheme buttom was clicked")
-                //.setTheme(R.style.Theme_MyRssFeedApp_BlueTheme)
-                context?.theme?.applyStyle(R.style.Theme_MyRssFeedApp_BlueTheme,true)
+                Log.d("BlueTheme","Blue Theme buttom was clicked")
+                requireActivity().setTheme(R.style.Theme_MyRssFeedAppBlue)
+                Log.d("ThemeChange", "Setting theme to: blue")
+                requireActivity().recreate()
+                Log.d("ThemeChange", "did something happen?")
                 dialog1.dismiss()
-                subscriptionAdapter.notifyDataSetChanged()
+                Log.d("ThemeChange", "after dismiss")
             }
+
             cancelTheme.setOnClickListener {
                 dialog1.dismiss()
             }
-
-            dialog1.dismiss()
             dialog1.setCancelable(false)
             dialog1.setContentView(themeView)
             dialog1.show()
+
         }
         //----------------------------------END CHANGE THEME-------------------------------------------------
         //update username
@@ -355,7 +350,5 @@ class SettingsFragment : Fragment() {
         return view
     }
 
-    private fun updateData() {
-        TODO("Not yet implemented")
-    }
+
 }
