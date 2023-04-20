@@ -11,11 +11,12 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
 import com.example.myrssfeedapp.Room.ArticleViewModel
+import com.example.myrssfeedapp.settingsPackage.BaseActivity
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     private lateinit var emailContainer : EditText
     private lateinit var passwordContainer : EditText
@@ -25,6 +26,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // BASEACTIVITY TRY...
+        //setTheme()
+
+
         setContentView(R.layout.activity_main)
         //Initialize our variables
         emailContainer = findViewById(R.id.email)

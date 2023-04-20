@@ -3,8 +3,10 @@ package com.example.myrssfeedapp.settingsPackage
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Resources.Theme
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -24,6 +27,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
+//import com.example.myrssfeedapp.settingsPackage.BaseActivity
 
 class SettingsFragment : Fragment() {
     private lateinit var userFullName:TextView
@@ -33,7 +37,6 @@ class SettingsFragment : Fragment() {
     private lateinit var subscriptionRV :RecyclerView
     private lateinit var deleteAccount:Button
     private lateinit var signOut : Button
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -192,14 +195,28 @@ class SettingsFragment : Fragment() {
         // test theme name is "Theme.MyRssFeedApp.BlueTheme"
         changeTheme.setOnClickListener{
             val dialog1 = BottomSheetDialog(this.requireContext())
-            val serviceView = layoutInflater.inflate(R.layout.change_theme,null)
-            val updateTheme:Button = serviceView.findViewById(R.id.updateTheme)
-            val cancelTheme:Button = serviceView.findViewById(R.id.cancelTheme)
-            val servicesRV1: RecyclerView = serviceView.findViewById(R.id.themesRV)
-            servicesRV1.layoutManager = LinearLayoutManager(this.requireContext())
+            val themeView = layoutInflater.inflate(R.layout.change_theme,null)
+            val updateTheme:Button = themeView.findViewById(R.id.updateTheme)
+            val cancelTheme:Button = themeView.findViewById(R.id.cancelTheme)
+            val themeRV: RecyclerView = themeView.findViewById(R.id.themesRV)
+            themeRV.layoutManager = LinearLayoutManager(this.requireContext())
+
+            var themesArr: Array<String> = arrayOf("Blue","Red","Green")
+            val arrThemes = arrayListOf<Themes>()
+
+            for( i in themesArr.indices){
+                val theme = Themes(themesArr[i],false)
+                arrThemes.add(theme)
+            }
+            themeRV.adapter = ThemeAdapter(arrThemes)
+
             updateTheme.setOnClickListener{
+                //Context ctx = getContext()
                 Log.d("UpdateTheme","changeTheme buttom was clicked")
-                // how to change theme ========>  R.style.Theme_MyRssFeedApp_BlueTheme
+                //.setTheme(R.style.Theme_MyRssFeedApp_BlueTheme)
+                context?.theme?.applyStyle(R.style.Theme_MyRssFeedApp_BlueTheme,true)
+                dialog1.dismiss()
+                subscriptionAdapter.notifyDataSetChanged()
             }
             cancelTheme.setOnClickListener {
                 dialog1.dismiss()
@@ -207,7 +224,7 @@ class SettingsFragment : Fragment() {
 
             dialog1.dismiss()
             dialog1.setCancelable(false)
-            dialog1.setContentView(serviceView)
+            dialog1.setContentView(themeView)
             dialog1.show()
         }
         //----------------------------------END CHANGE THEME-------------------------------------------------
@@ -336,5 +353,9 @@ class SettingsFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun updateData() {
+        TODO("Not yet implemented")
     }
 }
