@@ -1,21 +1,18 @@
 package com.example.myrssfeedapp.settingsPackage
 
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.Context
+import android.content.ContextWrapper
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.res.Resources.Theme
 import android.os.Bundle
 import android.util.Log
+import android.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,7 +25,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
-import com.example.myrssfeedapp.settingsPackage.BaseActivity
 
 class SettingsFragment : Fragment() {
     private lateinit var userFullName:TextView
@@ -206,10 +202,11 @@ class SettingsFragment : Fragment() {
             blueTheme.setOnClickListener{
                 //Context ctx = getContext()
                 Log.d("BlueTheme","Blue Theme buttom was clicked")
+                //val ctw = ContextThemeWrapper(requireContext(), R.style.Theme_MyRssFeedAppBlue)
+                // this shoudl work...!!
                 requireActivity().setTheme(R.style.Theme_MyRssFeedAppBlue)
-                Log.d("ThemeChange", "Setting theme to: blue")
                 requireActivity().recreate()
-                Log.d("ThemeChange", "did something happen?")
+
                 dialog1.dismiss()
                 Log.d("ThemeChange", "after dismiss")
             }

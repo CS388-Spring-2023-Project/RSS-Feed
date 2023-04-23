@@ -16,7 +16,7 @@ import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
-class MainActivity : BaseActivity(){
+class MainActivity : AppCompatActivity(){
 
     private lateinit var emailContainer : EditText
     private lateinit var passwordContainer : EditText
@@ -26,9 +26,8 @@ class MainActivity : BaseActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         // BASEACTIVITY TRY...
-        setTheme()
+        //setTheme()
         setContentView(R.layout.activity_main)
         //Initialize our variables
         emailContainer = findViewById(R.id.email)
