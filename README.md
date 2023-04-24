@@ -8,6 +8,7 @@
 1. [Sprint 2](#Sprint-2)
 1. [Sprint 3](#Sprint-3)
 1. [Sprint 4](#Sprint-4)
+1. [Sprint 5](#Sprint-5)
 ## Overview
 
 ### Description
@@ -37,7 +38,7 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 * [X] Users can manage their account (log out, delete account).
 * [x] Users can *un*subscribe from websites.
 * [X] Users can access articles through the feed by tapping on them.
-* [ ] Users can change themes of applications.
+* [X] Users can change themes of applications.
 * [ ] Filter feed by source, content type (article, podcast, etc), etc.
 
 **Stretch Features**
@@ -105,3 +106,7 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 # Sprint 4 
 ## Users can access articles through the feed by tapping on them.
 ![part3](https://user-images.githubusercontent.com/62580207/232624633-6b105b38-d695-4f8c-a6ad-e8b966049c8c.gif)
+
+# Sprint 5
+## User can Change Theme of application using button.
+<img src='https://github.com/CS388-Spring-2023-Project/RSS-Feed/blob/branch_r2/FP_Theme_Change.gif'/>
