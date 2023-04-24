@@ -109,4 +109,4 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 
 # Sprint 5
 ## User can Change Theme of application using button.
-
+<img src='https://github.com/CS388-Spring-2023-Project/RSS-Feed/blob/branch_r2/FP_Theme_Change.gif'/>
