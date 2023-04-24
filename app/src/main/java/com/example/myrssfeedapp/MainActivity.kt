@@ -39,7 +39,6 @@ class MainActivity : BaseActivity(){
         login = findViewById(R.id.loginButton)
         forgotPassword = findViewById(R.id.forgotPassword)
         changeThemeBT = findViewById(R.id.btChangeTheme)
-
         val helperObject = HelperClass()
 //------------------------------------- CHANGE THEME-----------------------------------------------
         changeThemeBT.setOnClickListener{
@@ -52,8 +51,9 @@ class MainActivity : BaseActivity(){
             val cancelTheme:Button = themeView.findViewById(R.id.cancelTheme)
             blueTheme.setOnClickListener{
                 Log.d("BlueTheme","Blue Theme buttom was clicked")
-                switchTheme(R.style.Theme_MyRssFeedAppBlue)
+                // IDK WHY THIS DOESNT WORK IN HERE??? BUT IT WORKING OUTSIDE THE ONCLICKLISTNER
                 //forgotPassword.setTextColor(getResources().getColor(R.color.brightBlue));
+                switchTheme(R.style.Theme_MyRssFeedAppBlue)
                 recreate()
                 dialog1.dismiss()
                 Log.d("ThemeChange", "after dismiss")

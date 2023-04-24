@@ -98,16 +98,15 @@
         android:id="@+id/forgotPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/forgot_password"
-        app:layout_constraintTop_toBottomOf="@id/loginButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginVertical="10dp"
-        android:textStyle="bold"
-        android:textSize="17sp"
         android:gravity="center"
+        android:text="@string/forgot_password"
         android:textColor="@color/myYellow"
-        />
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/loginButton" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -124,15 +123,15 @@
             android:text="@string/you_don_t_have_an_account_with_us"
             android:textSize="15sp"
             />
+
         <TextView
             android:id="@+id/noAccountButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_account"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:textColor="@color/myYellow"
             android:paddingStart="8dp"
+            android:text="@string/create_account"
+            android:textSize="15sp"
+            android:textStyle="bold"
             tools:ignore="RtlSymmetry" />
     </LinearLayout>
 
