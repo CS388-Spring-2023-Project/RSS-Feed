@@ -37,6 +37,9 @@ abstract class BaseActivity : AppCompatActivity() {
         else if(themeID == GREEN){
             currentTheme = GREEN
         }
+        else if(themeID == PURPLE){
+            currentTheme = PURPLE
+        }
         else{
             -1
         }
@@ -50,5 +53,7 @@ abstract class BaseActivity : AppCompatActivity() {
         private const val BLUE = R.style.Theme_MyRssFeedAppBlue
         private const val PINK = R.style.Theme_MyRssFeedApp2
         private const val GREEN = R.style.Theme_MyRssFeedAppGreen
+        private const val PURPLE = R.style.Theme_MyRssFeedAppPurple
+
     }
 }

@@ -48,7 +48,9 @@ class MainActivity : BaseActivity(){
             val pinkTheme:Button = themeView.findViewById(R.id.pinkTheme)
             val yellowTheme:Button = themeView.findViewById(R.id.yellowTheme)
             val greenTheme:Button = themeView.findViewById(R.id.greenTheme)
+            val purpleTheme:Button = themeView.findViewById(R.id.purpleTheme)
             val cancelTheme:Button = themeView.findViewById(R.id.cancelTheme)
+
             blueTheme.setOnClickListener{
                 Log.d("BlueTheme","Blue Theme buttom was clicked")
                 // IDK WHY THIS DOESNT WORK IN HERE??? BUT IT WORKING OUTSIDE THE ONCLICKLISTNER
@@ -75,6 +77,13 @@ class MainActivity : BaseActivity(){
             greenTheme.setOnClickListener{
                 Log.d("BlueTheme","Blue Theme buttom was clicked")
                 switchTheme(R.style.Theme_MyRssFeedAppGreen)
+                recreate()
+                dialog1.dismiss()
+                Log.d("ThemeChange", "after dismiss")
+            }
+            purpleTheme.setOnClickListener{
+                Log.d("BlueTheme","Blue Theme buttom was clicked")
+                switchTheme(R.style.Theme_MyRssFeedAppPurple)
                 recreate()
                 dialog1.dismiss()
                 Log.d("ThemeChange", "after dismiss")
