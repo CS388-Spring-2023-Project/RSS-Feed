@@ -188,38 +188,6 @@ class SettingsFragment : Fragment() {
         }
         //------------------------------------END ADD SERVCIES-----------------------------------------------
 
-        //------------------------------------CHANGE THEME---------------------------------------------------
-        // test theme name is "Theme.MyRssFeedApp.BlueTheme"
-//        changeTheme.setOnClickListener{
-//            val dialog1 = BottomSheetDialog(this.requireContext())
-//            val themeView = layoutInflater.inflate(R.layout.change_theme,null)
-//            val blueTheme:Button = themeView.findViewById(R.id.blueTheme)
-//            val pinkTheme:Button = themeView.findViewById(R.id.pinkTheme)
-//            val yellowTheme:Button = themeView.findViewById(R.id.yellowTheme)
-//            val greenTheme:Button = themeView.findViewById(R.id.greenTheme)
-//            val updateTheme:Button = themeView.findViewById(R.id.updateTheme)
-//            val cancelTheme:Button = themeView.findViewById(R.id.cancelTheme)
-//            blueTheme.setOnClickListener{
-//                //Context ctx = getContext()
-//                Log.d("BlueTheme","Blue Theme buttom was clicked")
-//                //val ctw = ContextThemeWrapper(requireContext(), R.style.Theme_MyRssFeedAppBlue)
-//                // this shoudl work...!!
-//                requireActivity().setTheme(R.style.Theme_MyRssFeedAppBlue)
-//                requireActivity().recreate()
-//
-//                dialog1.dismiss()
-//                Log.d("ThemeChange", "after dismiss")
-//            }
-//
-//            cancelTheme.setOnClickListener {
-//                dialog1.dismiss()
-//            }
-//            dialog1.setCancelable(false)
-//            dialog1.setContentView(themeView)
-//            dialog1.show()
-//
-//        }
-        //----------------------------------END CHANGE THEME-------------------------------------------------
         //update username
         updateUserName.setOnClickListener {
             val dialog = BottomSheetDialog(this.requireContext(),R.style.AppBottomSheetDialogTheme)
