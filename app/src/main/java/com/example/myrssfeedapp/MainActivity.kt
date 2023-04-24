@@ -39,7 +39,10 @@ class MainActivity : BaseActivity(){
         login = findViewById(R.id.loginButton)
         forgotPassword = findViewById(R.id.forgotPassword)
         changeThemeBT = findViewById(R.id.btChangeTheme)
+
         val helperObject = HelperClass()
+
+
 //------------------------------------- CHANGE THEME-----------------------------------------------
         changeThemeBT.setOnClickListener{
             val dialog1 = BottomSheetDialog(this)
@@ -52,41 +55,40 @@ class MainActivity : BaseActivity(){
             val cancelTheme:Button = themeView.findViewById(R.id.cancelTheme)
 
             blueTheme.setOnClickListener{
-                Log.d("BlueTheme","Blue Theme buttom was clicked")
-                // IDK WHY THIS DOESNT WORK IN HERE??? BUT IT WORKING OUTSIDE THE ONCLICKLISTNER
-                //forgotPassword.setTextColor(getResources().getColor(R.color.brightBlue));
+                //Log.d("BlueTheme","Blue Theme buttom was clicked")
                 switchTheme(R.style.Theme_MyRssFeedAppBlue)
                 recreate()
                 dialog1.dismiss()
-                Log.d("ThemeChange", "after dismiss")
+//                Log.d("ThemeChange", "after dismiss")
+//                Log.d("Theme ", curTheme().toString())
             }
             yellowTheme.setOnClickListener{
-                Log.d("BlueTheme","Blue Theme buttom was clicked")
+                //Log.d("BlueTheme","Blue Theme buttom was clicked")
                 switchTheme(R.style.Theme_MyRssFeedApp)
                 recreate()
                 dialog1.dismiss()
-                Log.d("ThemeChange", "after dismiss")
+                //Log.d("ThemeChange", "after dismiss")
             }
             pinkTheme.setOnClickListener{
-                Log.d("BlueTheme","Blue Theme buttom was clicked")
+                //Log.d("BlueTheme","Blue Theme buttom was clicked")
                 switchTheme(R.style.Theme_MyRssFeedApp2)
                 recreate()
                 dialog1.dismiss()
-                Log.d("ThemeChange", "after dismiss")
+                //Log.d("ThemeChange", "after dismiss")
             }
             greenTheme.setOnClickListener{
                 Log.d("BlueTheme","Blue Theme buttom was clicked")
                 switchTheme(R.style.Theme_MyRssFeedAppGreen)
                 recreate()
                 dialog1.dismiss()
-                Log.d("ThemeChange", "after dismiss")
+                //Log.d("ThemeChange", "after dismiss")
             }
             purpleTheme.setOnClickListener{
-                Log.d("BlueTheme","Blue Theme buttom was clicked")
+                //Log.d("BlueTheme","Blue Theme buttom was clicked")
                 switchTheme(R.style.Theme_MyRssFeedAppPurple)
                 recreate()
                 dialog1.dismiss()
-                Log.d("ThemeChange", "after dismiss")
+                //Log.d("ThemeChange", "after dismiss")
             }
             cancelTheme.setOnClickListener {
                 dialog1.dismiss()
@@ -97,6 +99,8 @@ class MainActivity : BaseActivity(){
         }
 
 //------------------------------------END CHANGE THEME----------------------------------------
+
+        //Log.d("CURRENT THEME:", curTheme())
 
         //Do not have account
         noAccount.setOnClickListener{

@@ -3,15 +3,17 @@ package com.example.myrssfeedapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.example.myrssfeedapp.settingsPackage.BaseActivity
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
-class SignUpActivity : AppCompatActivity() {
+class SignUpActivity : BaseActivity() {
 
     private lateinit var fnameContainer : EditText
     private lateinit var lnameContainer : EditText
@@ -23,8 +25,9 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme()
         setContentView(R.layout.activity_sign_up)
-
+        switchTheme(curTheme())
         //Initialize our variables
         fnameContainer = findViewById(R.id.firstName)
         lnameContainer = findViewById(R.id.lastName)

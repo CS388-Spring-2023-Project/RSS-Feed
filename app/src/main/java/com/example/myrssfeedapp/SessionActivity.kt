@@ -8,20 +8,21 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.myrssfeedapp.settingsPackage.BaseActivity
 import com.example.myrssfeedapp.settingsPackage.Service
 import com.example.myrssfeedapp.settingsPackage.Subscription
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.json.JSONArray
 
-class SessionActivity : AppCompatActivity() {
+class SessionActivity : BaseActivity() {
     private lateinit var bottomNavigation: BottomNavigationView
     private lateinit var navigationController: NavController
     private lateinit var btTheme: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setTheme()
         setContentView(R.layout.activity_session)
-
+        switchTheme(curTheme())
         bottomNavigation = findViewById(R.id.bottom_navigation)
         navigationController = findNavController(R.id.fragment)
         bottomNavigation.setupWithNavController(navigationController)
