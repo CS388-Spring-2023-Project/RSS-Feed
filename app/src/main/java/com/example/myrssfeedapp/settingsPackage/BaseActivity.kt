@@ -5,33 +5,50 @@ import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myrssfeedapp.R
+import java.io.CharArrayWriter
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    public var currentTheme = YELLOW
+    var currentTheme = YELLOW
 
     override fun onCreate(savedInstanceState: Bundle?) {
         currentTheme = PreferenceManager.getDefaultSharedPreferences(this).getInt(KEY_THEME, YELLOW)
         super.onCreate(savedInstanceState)
     }
 
-    public  fun setTheme() { setTheme(currentTheme) }
+    fun setTheme() {
+        setTheme(currentTheme)
+    }
 
-    public fun switchTheme() {
-        currentTheme = when(currentTheme) {
-            YELLOW-> BLUE
-            BLUE -> YELLOW
-            else -> -1
+    fun switchTheme(themeID : Int) {
+        Log.d("Theme:",currentTheme.toString())
+        if(themeID == BLUE){
+            currentTheme = BLUE
+        }
+        else if(themeID == YELLOW){
+            currentTheme = YELLOW
+        }
+        else if(themeID == PINK){
+            currentTheme = PINK
+        }
+        else if(themeID == GREEN){
+            currentTheme = GREEN
+        }
+        else{
+            -1
         }
 
         PreferenceManager.getDefaultSharedPreferences(this).edit().putInt(KEY_THEME, currentTheme).apply()
     }
 
     companion object {
-        private const val KEY_THEME = "Theme"
+        private const val KEY_THEME = "theme"
         private const val YELLOW = R.style.Theme_MyRssFeedApp
         private const val BLUE = R.style.Theme_MyRssFeedAppBlue
+        private const val PINK = R.style.Theme_MyRssFeedApp2
+        private const val GREEN = R.style.Theme_MyRssFeedAppGreen
     }
 }

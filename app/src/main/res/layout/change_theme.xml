@@ -112,8 +112,7 @@
             android:layout_weight="0.45"
             android:backgroundTint="@color/greenLime"
             android:padding="15dp"
-            android:text="@string/cancel"
-
+            android:text="Lime Green"
             app:cornerRadius="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

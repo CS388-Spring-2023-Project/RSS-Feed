@@ -1,6 +1,7 @@
 package com.example.myrssfeedapp
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,22 +13,24 @@ import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.ViewModelProvider
 import com.example.myrssfeedapp.Room.ArticleViewModel
 import com.example.myrssfeedapp.settingsPackage.BaseActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : BaseActivity(){
 
     private lateinit var emailContainer : EditText
     private lateinit var passwordContainer : EditText
     private lateinit var noAccount : TextView
     private lateinit var login : Button
+    private lateinit var changeThemeBT: Button
     private lateinit var forgotPassword : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // BASEACTIVITY TRY...
-        //setTheme()
+        setTheme()
         setContentView(R.layout.activity_main)
         //Initialize our variables
         emailContainer = findViewById(R.id.email)
@@ -35,8 +38,57 @@ class MainActivity : AppCompatActivity(){
         noAccount = findViewById(R.id.noAccountButton)
         login = findViewById(R.id.loginButton)
         forgotPassword = findViewById(R.id.forgotPassword)
+        changeThemeBT = findViewById(R.id.btChangeTheme)
 
         val helperObject = HelperClass()
+//------------------------------------- CHANGE THEME-----------------------------------------------
+        changeThemeBT.setOnClickListener{
+            val dialog1 = BottomSheetDialog(this)
+            val themeView = layoutInflater.inflate(R.layout.change_theme,null)
+            val blueTheme:Button = themeView.findViewById(R.id.blueTheme)
+            val pinkTheme:Button = themeView.findViewById(R.id.pinkTheme)
+            val yellowTheme:Button = themeView.findViewById(R.id.yellowTheme)
+            val greenTheme:Button = themeView.findViewById(R.id.greenTheme)
+            val cancelTheme:Button = themeView.findViewById(R.id.cancelTheme)
+            blueTheme.setOnClickListener{
+                Log.d("BlueTheme","Blue Theme buttom was clicked")
+                switchTheme(R.style.Theme_MyRssFeedAppBlue)
+                //forgotPassword.setTextColor(getResources().getColor(R.color.brightBlue));
+                recreate()
+                dialog1.dismiss()
+                Log.d("ThemeChange", "after dismiss")
+            }
+            yellowTheme.setOnClickListener{
+                Log.d("BlueTheme","Blue Theme buttom was clicked")
+                switchTheme(R.style.Theme_MyRssFeedApp)
+                recreate()
+                dialog1.dismiss()
+                Log.d("ThemeChange", "after dismiss")
+            }
+            pinkTheme.setOnClickListener{
+                Log.d("BlueTheme","Blue Theme buttom was clicked")
+                switchTheme(R.style.Theme_MyRssFeedApp2)
+                recreate()
+                dialog1.dismiss()
+                Log.d("ThemeChange", "after dismiss")
+            }
+            greenTheme.setOnClickListener{
+                Log.d("BlueTheme","Blue Theme buttom was clicked")
+                switchTheme(R.style.Theme_MyRssFeedAppGreen)
+                recreate()
+                dialog1.dismiss()
+                Log.d("ThemeChange", "after dismiss")
+            }
+            cancelTheme.setOnClickListener {
+                dialog1.dismiss()
+            }
+            dialog1.setCancelable(false)
+            dialog1.setContentView(themeView)
+            dialog1.show()
+        }
+
+//------------------------------------END CHANGE THEME----------------------------------------
+
         //Do not have account
         noAccount.setOnClickListener{
             val intent = Intent(this,SignUpActivity::class.java)
