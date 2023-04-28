@@ -49,4 +49,5 @@
     <string name="secret_code">secret Code :</string>
     <string name="fpEmail">Email :</string>
     <string name="secret_pin">Secret PIN</string>
+    <string name="themes">Themes</string>
 </resources>

@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -47,6 +49,7 @@ class FavoriteArticleFragment : Fragment() {
         articleAuthor = view.findViewById(R.id.articleAuthor)
         delete = view.findViewById(R.id.delete)
         backButton = view.findViewById(R.id.backButton)
+
         val sharedVM = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         val helperClass = HelperClass()
         val articleEntity = sharedVM.chosenArticle

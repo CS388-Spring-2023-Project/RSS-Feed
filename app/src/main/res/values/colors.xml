@@ -16,7 +16,8 @@
     <color name="pomegranate">#c93434</color>
     <color name="greenLime">#32CD32</color>
     <color name="brightBlue">#0096FF</color>
-
-
+    <color name="color5">#36454F</color>
     <color name="Theme2lightest">#F8F2EE</color>
+    <color name="myYellow">#ffd700</color>
+    <color name="myPink">#e7008a</color>
 </resources>

@@ -9,6 +9,7 @@
     android:id="@+id/favoritesFragment"
     >
     <ImageView
+        android:id="@+id/topBackground"
         android:layout_width="match_parent"
         android:layout_height="155dp"
         android:background="@drawable/wave6"
@@ -32,15 +33,51 @@
         android:fontFamily="sans-serif"
         android:textColor="@color/white"
         />
+    <LinearLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/topBackground"
+        android:weightSum="1">
+        <EditText
+            android:id="@+id/searchedWord"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:maxLines="1"
+            android:ems="10"
+            android:textColor="@color/color5"
+            android:background="@drawable/corner_borders"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/ic_search"
+            android:layout_marginHorizontal="10dp"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/searchButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            android:text="Search"
+            app:cornerRadius="30dp"
+            android:layout_marginHorizontal="5dp"
+            android:backgroundTint="@color/greenLime"/>
+
+
+    </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoritesRV"
         android:paddingTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@id/favoritesTitle"
+        android:layout_below="@id/searchContainer"
         android:layout_alignParentBottom="true"
         />
 </RelativeLayout>

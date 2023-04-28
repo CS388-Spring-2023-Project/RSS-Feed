@@ -3,6 +3,9 @@ package com.example.myrssfeedapp
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +13,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.myrssfeedapp.Room.ArticleViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
@@ -23,15 +28,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var noAccount : TextView
     private lateinit var login : Button
     private lateinit var forgotPassword : TextView
-
+    private lateinit var ThemeButton : TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        R.color.color1
         //Initialize our variables
         emailContainer = findViewById(R.id.email)
         passwordContainer = findViewById(R.id.password)
         noAccount = findViewById(R.id.noAccountButton)
         login = findViewById(R.id.loginButton)
+        ThemeButton = findViewById(R.id.ThemeButton)
         forgotPassword = findViewById(R.id.forgotPassword)
         var flag = false
         val articleVM = ViewModelProvider(this)[ArticleViewModel::class.java]
@@ -68,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun onResponse(call: Call, response: Response) {
-                        //Log.d("result","success")
+                        //Log.d("response",response.body?.string().toString())
                         val jsonResult = response.body?.string()?.let { it1 -> JSONObject(it1) }
                         Log.d("jsonResult",jsonResult.toString())
                         if (jsonResult != null) {
@@ -167,6 +174,34 @@ class MainActivity : AppCompatActivity() {
                 .setNegativeButton("Cancel", DialogInterface.OnClickListener(function = negativeButtonClick))
                 .setPositiveButton("OK", DialogInterface.OnClickListener(function = positiveButtonClick))
                 .show()
+        }
+
+        ThemeButton.setOnClickListener {
+            val dialog = BottomSheetDialog(this)
+            val themeView = layoutInflater.inflate(R.layout.theme_layout,null)
+            val brown : Button = themeView.findViewById(R.id.brown)
+            val blue : Button = themeView.findViewById(R.id.blue)
+            val yellow : Button = themeView.findViewById(R.id.yellow)
+            val pink : Button = themeView.findViewById(R.id.pink)
+            dialog.setCancelable(false)
+            dialog.setContentView(themeView)
+            dialog.show()
+
+            blue.setOnClickListener {
+
+                dialog.dismiss()
+            }
+            brown.setOnClickListener {
+                dialog.dismiss()
+            }
+            pink.setOnClickListener {
+                val color1ID = R.color.color1
+
+                dialog.dismiss()
+            }
+            yellow.setOnClickListener {
+                dialog.dismiss()
+            }
         }
     }
 }

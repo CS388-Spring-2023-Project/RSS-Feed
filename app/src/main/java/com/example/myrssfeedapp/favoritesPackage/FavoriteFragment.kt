@@ -5,6 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -21,7 +24,8 @@ import java.io.IOException
 
 class FavoriteFragment : Fragment(){
     private lateinit var favoritesRV :RecyclerView
-
+    private lateinit var searchButton : Button
+    private lateinit var searchedWord : EditText
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,16 +35,20 @@ class FavoriteFragment : Fragment(){
         val helperClass = HelperClass()
         val sharedVM = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
         favoritesRV = view.findViewById(R.id.favoritesRV)
+        searchButton = view.findViewById(R.id.searchButton)
+        searchedWord = view.findViewById(R.id.searchedWord)
         favoritesRV.layoutManager = LinearLayoutManager(this.requireContext())
         val favoritesAdapter = FavoritesAdapter{
             sharedVM.chosenArticle = it
             Navigation.findNavController(view).navigate(R.id.to_favoriteArticleFragment)
         }
+        var favoritesList = ArrayList<ArticleEntity>()
+
 
         //val articleVM = ViewModelProvider(requireActivity())[ArticleViewModel::class.java]
 
         val userID = sharedVM.getUserID()
-        val favoritesList = ArrayList<ArticleEntity>()
+
         val client = OkHttpClient()
         val requestBody = FormBody.Builder()
             .add("getFavorite","")
@@ -86,6 +94,25 @@ class FavoriteFragment : Fragment(){
             }
         })
         favoritesRV.adapter = favoritesAdapter
+        searchButton.setOnClickListener {
+            var foundList = ArrayList<ArticleEntity>()
+            val word = searchedWord.text.toString()
+            if(word.isEmpty()) {
+                Toast.makeText(requireContext(), "Nothing to be searched", Toast.LENGTH_LONG).show()
+                favoritesAdapter.setData(favoritesList.toList())
+            }
+            else if(favoritesList.isNotEmpty()){
+                for(article in favoritesList){
+                    if(word.lowercase() in article.articleTitle.lowercase() ||
+                        word.lowercase() in article.articleContent.lowercase()||
+                            word.lowercase() in article.articleURL.lowercase())
+                        foundList.add(article)
+                }
+                if(foundList.isNotEmpty())
+                    favoritesAdapter.setData(foundList.toList())
+            }
+        }
+
         return view
     }
 }
