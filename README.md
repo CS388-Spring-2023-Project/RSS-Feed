@@ -106,3 +106,7 @@ RSS feed is an app that allows users to subscribe to multiple websites via RSS i
 # Sprint 4 
 ## Users can access articles through the feed by tapping on them.
 ![part3](https://user-images.githubusercontent.com/62580207/232624633-6b105b38-d695-4f8c-a6ad-e8b966049c8c.gif)
+
+# Sprint 5
+## Users can Filter their favorite articles
+![final](https://user-images.githubusercontent.com/62580207/235270999-7b1974de-09d1-4146-8e5f-0949d823d0f4.gif)
